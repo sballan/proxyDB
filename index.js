@@ -2,7 +2,6 @@
 
 // } 
 
-const strategies = require('./strategies');
-const mongoose = strategies.register('mongoose-strategy');
-
-mongoose.findOne()
+const db = require('./proxyDb')('mongoose-strategy');
+console.log(db)
+db.findOne() 

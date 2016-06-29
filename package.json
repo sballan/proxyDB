@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/sballan/proxyDB/issues"
   },
-  "homepage": "https://github.com/sballan/proxyDB#readme"
+  "homepage": "https://github.com/sballan/proxyDB#readme",
+  "dependencies": {
+    "bluebird": "^3.4.1"
+  },
+  "devDependencies": {
+    "mongoose": "^4.5.2"
+  }
 }
