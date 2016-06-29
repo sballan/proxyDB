@@ -1,0 +1,25 @@
+{
+  "name": "proxydb",
+  "version": "0.0.1",
+  "description": "Syntactic sugar for working with your favorite ODM/ORM",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sballan/proxyDB.git"
+  },
+  "keywords": [
+    "ORM",
+    "ODM",
+    "mongoose",
+    "mongoDB"
+  ],
+  "author": "Samuel Ballan <sgb4622@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sballan/proxyDB/issues"
+  },
+  "homepage": "https://github.com/sballan/proxyDB#readme"
+}
