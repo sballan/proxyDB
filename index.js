@@ -2,6 +2,6 @@
 
 // } 
 
-const db = require('./proxyDb')('mongoose-strategy');
-console.log(db)
-db.findOne() 
+const proxyDb = require('./proxyDb')('mongoose-strategy');
+console.log(proxyDb)
+proxyDb.findOne() 

@@ -1,4 +1,6 @@
-module.exports = {
-	instance: require('./instance'),
-	model: require('./model')
+module.exports = function Proxify(strategy) {
+	return {
+		instance: require('./instance.factory')(strategy),
+		model: require('./model.factory')(strategy)
+	}
 }

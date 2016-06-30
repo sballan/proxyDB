@@ -1,10 +1,11 @@
 const strategies = require('./strategies');
 
-module.exports = function proxyDb(strategy) {
-	const db = {};
+module.exports = function ProxyDb(strategy) {
+	const proxyDb = {};
 
-	db.strategy = strategies.register(strategy);
+	proxyDb.strategy = strategies.register(strategy);
+	proxyDb.proxify = require('./proxify')(strategy);
 	
 	
-	return db;
+	return proxyDb;
 }
