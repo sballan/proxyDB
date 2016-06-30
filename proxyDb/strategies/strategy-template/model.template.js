@@ -17,5 +17,5 @@ Model.prototype.updateOne = function() {
 }
 
 module.exports = ()=> {
-	return new Model();
+	return Model;
 }

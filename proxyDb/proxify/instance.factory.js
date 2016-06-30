@@ -2,8 +2,8 @@ const _ = require('lodash')
 
 module.exports = function(strategy) {
 	// strategy will stay on scope
-	return function proxifyInstance(instance){	
-		instance = strategy.instance(instance)
+	return function proxifyInstance(instance, db){	
+		instance = strategy.instance(instance, db)
 
 		const proxy = {
 			get doc() {
