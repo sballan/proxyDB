@@ -4,7 +4,7 @@
   "description": "Syntactic sugar for working with your favorite ODM/ORM",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "repository": {
     "type": "git",
@@ -29,12 +29,6 @@
   "devDependencies": {
     "jasmine": "^2.4.1",
     "jasmine-core": "^2.4.1",
-    "karma": "^1.1.0",
-    "karma-chrome-launcher": "^1.0.1",
-    "karma-cli": "^1.0.1",
-    "karma-phantomjs-launcher": "^1.0.1",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
     "mongoose": "^4.5.2",
     "webpack": "^1.13.1"
   }
