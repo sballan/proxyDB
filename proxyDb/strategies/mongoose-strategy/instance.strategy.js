@@ -18,7 +18,6 @@ InstanceStrategy.prototype = {
 		})
 	},
 	refresh: function refresh() {
-		console.log(Object.keys(this.instance._doc))
 		const id = this.instance._id;
 		return this.instance.constructor.findOne(id).exec()
 		.then(instance=> {
