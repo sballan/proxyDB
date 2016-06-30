@@ -1,4 +1,4 @@
-function Model (config) {}
+function Model () {}
 
 Model.prototype.find = function() {
 		throw new Error(`find is not implemented in this strategy.`);
@@ -16,4 +16,6 @@ Model.prototype.updateOne = function() {
 		throw new Error(`updateOne is not implemented in this strategy.`);
 }
 
-module.exports = Model
+module.exports = ()=> {
+	return new Model();
+}
