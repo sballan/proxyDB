@@ -38,8 +38,8 @@ describe('Mongoose Instance Strategy', function() {
 		.then(function(refreshedInstance) {
 			expect(instanceStrategy.instance.age)
 				.to.equal(30)
-				// .toEqual(refreshedInstance.age)
-				// .toEqual(30)
+				.toEqual(refreshedInstance.age)
+				.toEqual(30)
 			return Promise.resolve({})
 		})
     
