@@ -1,4 +1,5 @@
-// Takes a space separated string of test helpers.  Without args defaults to all helpers.
+// Specific strategies have their test located locally.
+
 const Promise = require("bluebird");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
