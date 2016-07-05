@@ -1,29 +1,25 @@
 // Takes a space separated string of test helpers.  Without args defaults to all helpers.
 const Promise = require("bluebird");
+const mongoose = require("mongoose");
+mongoose.Promise = Promise;
 
-module.exports = Helpers()
+const connections = require('./connections.helper');
+const models = require('./models.helper');
 
-
-function Helpers (helpers) {
-
-	if(!helpers) {
-		return Promise.all([
-			require('./connections.helper'),
-			require('./models.helper')
-		])
-		.spread((connections, models)=> {
-			return {
-				connections,
-				models
-			}
-		})
-	}
-
-	throw Error("Args not setup for this function")
-	// helpers = helpers.split(' ');
-
-	// return Promise.map((helpers, helper)=> {
-	// 	return require(`./${helper}.helper`)
-	// })
-
-}
+const tests = [
+	'instance.strategy',
+	'model.strategy'
+]
+	
+	
+describe('Mongoose Strategy Suite', function() {
+	
+	before(connections.open)
+	
+	tests.forEach(function(test) {
+		require(`./${test}.spec.js`);	
+	})
+	
+	after(connections.close)
+	
+})

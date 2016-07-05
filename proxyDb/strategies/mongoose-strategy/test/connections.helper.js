@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const DBURI = `mongodb://localhost:27017/proxyDb-mock`;
+const Promise = require('bluebird');
 
 function open(done) {
   function clearDB() {
@@ -23,9 +24,8 @@ function open(done) {
 
 
 function close(done) {
-  mongoose.disconnect();
-  return done();
-};
+  mongoose.disconnect(done);
+}
 
 module.exports = {
 	open,
