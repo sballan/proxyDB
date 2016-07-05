@@ -9,5 +9,5 @@ Instance.prototype.updateOne = function() {
 }
 
 module.exports = ()=> {
-	return new Instance();
+	return Instance;
 }

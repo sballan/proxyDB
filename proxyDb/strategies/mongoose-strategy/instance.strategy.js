@@ -11,17 +11,15 @@ function InstanceStrategy(instance, db) {
 util.inherits(InstanceStrategy, InstanceTemplate);
 
 InstanceStrategy.prototype = {
-	update: function update(model, data) {
+	update: function update(data) {
 		return this.instance.update(data)
 		.then(()=> {
 			return this.refresh();
 		})
 	},
 	refresh: function refresh() {
-		const schema = this.instance.schema;
 		const id = this.instance._id;
-
-		return this.db.model(schema).findOne(id).exec()
+		return this.instance.constructor.findOne(id).exec()
 		.then(instance=> {
 			this.instance = instance;
 			return this;
@@ -29,6 +27,6 @@ InstanceStrategy.prototype = {
 	}
 }
 
-module.exports = (config)=> {
-	return new InstanceStrategy(config);
+module.exports = (instance, db)=> {
+	return new InstanceStrategy(instance, db);
 }
