@@ -1,15 +1,7 @@
-var config = require('../config');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const DBURI = `mongodb://localhost:27017/proxyDb-mock`;
 
-
-// ensure the NODE_ENV is set to 'test'
-// this is helpful when you would like to change behavior when testing
-process.env.NODE_ENV = 'test';
-
-
-beforeEach(function (done) {
-
-
+function open(done) {
   function clearDB() {
     for (var i in mongoose.connection.collections) {
       mongoose.connection.collections[i].remove(function() {});
@@ -17,9 +9,8 @@ beforeEach(function (done) {
     return done();
   }
 
-
   if (mongoose.connection.readyState === 0) {
-    mongoose.connect(config.db.test, function (err) {
+    mongoose.connect(DBURI, function (err) {
       if (err) {
         throw err;
       }
@@ -28,10 +19,15 @@ beforeEach(function (done) {
   } else {
     return clearDB();
   }
-});
+};
 
 
-afterEach(function (done) {
+function close(done) {
   mongoose.disconnect();
   return done();
-});
+};
+
+module.exports = {
+	open,
+	close
+}

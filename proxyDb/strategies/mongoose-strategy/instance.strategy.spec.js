@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+const Promise = mongoose.Promise = require('bluebird');
 
-xdescribe('Mongoose Instance Strategy', () => {
+describe('Mongoose Instance Strategy', () => {
 	let instanceStrategy;
 	let MockUser;
 	let mockUser;
 
 	beforeAll(function(done) {
-		mongoose.connect(`mongodb://localhost:27017/proxyDb-mock`)
-		.then(db=> {
-			return mongoose.model('MockUser', new mongoose.Schema({
-				name: String,
-				age: Number
-			})) 
+		Promise.resolve({})
+		.then(function() {
+			console.log("first async");
+			return require('./test');
 		})
-		.then(dbModel=> {
-			MockUser = mongoose.model('MockUser');
-			done();
+		.then(function(){
+			console.log("second async");
+			MockUser =	mongoose.model('MockUser');
+			done()
 		})
+
 	})
 
 	beforeEach(function(done) {
@@ -31,10 +31,6 @@ xdescribe('Mongoose Instance Strategy', () => {
 
 	afterEach(function() {
 		MockUser.remove({}).exec();
-	})
-
-	afterAll(function(done) {
-		mongoose.disconnect(done)
 	})
 
 
