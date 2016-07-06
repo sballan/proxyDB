@@ -1,7 +1,8 @@
+const ProxyModelTemplate = require('./proxy.model');
 const ProxyInstanceTemplate = require('../strategy-template').instance;
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-module.exports = class ProxyInstance extends ProxyInstanceTemplate {
+module.exports = class ProxyInstance extends ProxyInstanceTemplate(ProxyModelTemplate) {
 	constructor(instance) {
 		super(instance)
 	}
@@ -29,17 +30,28 @@ module.exports = class ProxyInstance extends ProxyInstanceTemplate {
 		})
 	}
   
-  static proxify() {
-    
+  static create(...args) {
+    return super.create(...args)
+    .then(proxify)
   }
+  
+  static find(...args) {
+		return super.find(...args)
+		.then(proxify);
+	}
+	
+	static findOne() {
+		return this.model.findOne(query).exec()
+		.then(sInstance);
+	}
 }
 
-function sInstance(instance, db) {
-	return sConstructor(instance, db)
-}
-
-function sInstanceMap(instances, db) {
-	return instances.map(instance=> {
-		return sConstructor(instance, db)
-	})
+function proxify(dbInstance) {
+  if(Array.isArray(dbInstance)) {
+    return dbInstance.map(i=> {
+      return new ProxyInstance(i)
+    })
+  }
+  
+  return new ProxyInstance(dbInstance);
 }

@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const Template = require('../../proxyDb/strategies/strategy-template')
+const Template = require('../../proxyDb/strategies/strategy-template').model
 
 describe('Strategy Template', function(){
   it('has the correct properties', function() {

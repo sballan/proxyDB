@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const expect = require("chai").expect;
 
-describe('Mongoose Instance Strategy', function() {
-	const Strategy = require('../instance.strategy');
+xdescribe('Mongoose Instance Strategy', function() {
+	const Strategy = new require('../proxy.instance');
 	let instanceStrategy;
 	let MockUser = require('./models.helper').MockUser;
 	let mockUser;
