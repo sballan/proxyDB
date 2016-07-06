@@ -1,10 +1,9 @@
 const ProxyModelTemplate = require('./model.template');
 
-module.exports = (ModelTemplate = ProxyModelTemplate)=> {
-	return class ProxyInstanceTemplate extends ModelTemplate {
+module.exports = ()=> {
+	class ProxyInstanceTemplate  {
 		constructor(dbInstance) {
 			this.instance = dbInstance;
-			
 		}
 		
 		update() {
@@ -36,24 +35,9 @@ module.exports = (ModelTemplate = ProxyModelTemplate)=> {
 			this.instance = row;
 			return this.instance;
 		}
-		
-		
-		static find(...args) {
-			super.find(...args)
-		}
-		
-		static findOne(...args) {
-			super.findOne(...args)
-		}
-		
-		static update(...args) {
-			super.update(...args)
-		}
-		
-		static updateOne(...args) {
-			super.updateOne(...args)
-		}
+  
 
 	}
 
+	return ProxyInstanceTemplate;
 }
