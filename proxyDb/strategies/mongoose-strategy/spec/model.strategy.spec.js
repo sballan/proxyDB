@@ -23,7 +23,6 @@ describe('Mongoose Model Strategy', function() {
 	it('can find an instance', function() {
 		return modelStrategy.findOne({age: 20})
 		.then(function(dbInstance) {
-			console.log(dbInstance)
 			// expect(dbInstance).to.equal(mockUser1)
 		})
   });
