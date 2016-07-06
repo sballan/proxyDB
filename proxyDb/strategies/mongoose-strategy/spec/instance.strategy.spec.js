@@ -19,9 +19,6 @@ describe('Mongoose Instance Strategy', function() {
 	afterEach(function() {
 		return MockUser.remove({}).exec();
 	})
-	
-	
-
 
 	it('has reference to Mongoose document instance', function() {
 		expect(mockUser.name).to.equal('Jane Doe');
@@ -44,7 +41,7 @@ describe('Mongoose Instance Strategy', function() {
     
   });
 
-	it('can update itself', function(done) {
+	it('can update its instance', function(done) {
 		expect(instanceStrategy.instance.age).to.equal(25);
 
 		instanceStrategy.update({age:20})
@@ -52,6 +49,17 @@ describe('Mongoose Instance Strategy', function() {
 			expect(dbInstance.instance.age)
 				.to.equal(20);
 			done()
+		})
+
+	})
+	
+	it('can save its instance', function() {
+		expect(instanceStrategy.instance.age).to.equal(25);
+		instanceStrategy.instance.age = 20;
+		
+		return instanceStrategy.save()
+		.then(function(dbInstance) {
+			expect(dbInstance.instance.age).to.equal(20);
 		})
 
 	})

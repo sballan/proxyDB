@@ -1,16 +1,22 @@
 const util = require('util');
 const InstanceTemplate = require('../strategy-template').instance;
 
-function InstanceStrategy(instance, db) {
+function InstanceStrategy(instance, model, db) {
 	this.db = db || require('mongoose');
 	this.Promise = this.db.Promise = require('bluebird');
 	this.instance = instance;
-	// this.model = config.model;
+	this.model = model;
 }
 
 util.inherits(InstanceStrategy, InstanceTemplate);
 
 InstanceStrategy.prototype = {
+	save: function save() {
+		return this.instance.save()
+		.then(()=> {
+			return this;
+		})
+	},
 	update: function update(data) {
 		return this.instance.update(data)
 		.then(()=> {
