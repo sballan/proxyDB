@@ -15,13 +15,11 @@ describe('Schema Template', function(){
 			}
 		}
 		const MockModel = new ProxySchemaTemplate('myModel', dbModel);
-		console.log('MODEL', MockModel)
 
 		assert.isFunction(MockModel)
 		expect(MockModel).to.have.property('name', 'ProxyModelTemplate')
 		expect(MockModel).to.have.property('modelName', 'myModel')
 		expect(MockModel).to.have.property('dbModel', dbModel)
-		console.log(new MockModel('value'))
   });
 
 

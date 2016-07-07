@@ -6,19 +6,15 @@ module.exports = class ProxyModelTemplate {
 		return this.constructor.create(...args)
 	}
 	
-	static temp() {
-		console.log("TEMP")
-	}
-	
 	static create(...args) {
-		const modelName = this.prototype.constructor.modelName;
+		const dbModel = this.prototype.constructor.dbModel;
 		
-		if(!modelName || !dbModel) {
+		if(!dbModel) {
 			throw Error("Create cannot be called without modelName and dbModel defined")
 		}
 
 		const dbInstance = new dbModel(...args); 
-		return new ProxyInstanceTemplate(dbInstance)
+		return this.proxify(dbInstance)
 	}
 
 	static find() {
