@@ -3,19 +3,22 @@ const ProxyInstanceTemplate = require('./instance.template');
 module.exports = class ProxyModelTemplate {
 	// Example constructor
 	constructor(...args) {
-		console.log("CONSTRUCTOR", this.dbModel)
-		if(!ProxyModelTemplate.modelName || !ProxyModelTemplate.dbModel) {
-			throw Error("This constructor is malformed.")
-		}
+		return this.constructor.create(...args)
+	}
+	
+	static temp() {
+		console.log("TEMP")
+	}
+	
+	static create(...args) {
+		const modelName = this.prototype.constructor.modelName;
 		
-		const dbModel = ProxyModelTemplate.dbModel
+		if(!modelName || !dbModel) {
+			throw Error("Create cannot be called without modelName and dbModel defined")
+		}
 
 		const dbInstance = new dbModel(...args); 
 		return new ProxyInstanceTemplate(dbInstance)
-	}
-	
-	static create() {
-		throw new ReferenceError(`create is not implemented in this strategy.`);
 	}
 
 	static find() {
