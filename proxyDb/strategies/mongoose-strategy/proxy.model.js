@@ -4,12 +4,18 @@ const ProxyInstance = require('./proxy.instance');
 
 module.exports = class ProxyModel extends ModelTemplate {
 	constructor(dbInstance) {
-		return new ProxyInstance(dbInstance)
+		super(dbInstance)
 	}
 	
 	static create(query) {
-		return this.dbModel.create(query)
-		.then(this.proxify)
+		const dbModel = this.prototype.constructor.dbModel;
+		
+		if(!dbModel) {
+			throw ("Create cannot be called without modelName and dbModel defined")
+		}
+
+		const dbInstance = new dbModel(query); 
+		return this.proxify(dbInstance)
 	}
 	
 	static find(query) {
@@ -20,6 +26,16 @@ module.exports = class ProxyModel extends ModelTemplate {
 	static findOne(query) {
 		return this.dbModel.findOne(query).exec()
 		.then(this.proxify)
+	}
+	
+	static proxify(dbInstance) {
+		if(Array.isArray(dbInstance)) {
+			return dbInstance.map(i=> {
+				return new ProxyInstance(i)
+			})
+		}
+
+		return new ProxyInstance(dbInstance);
 	}
 
 	

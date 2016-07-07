@@ -8,8 +8,9 @@ const connections = require('./connections.helper');
 const models = require('./models.helper');
 
 const tests = [
-	'instance.strategy',
-	'model.strategy'
+	'schema.strategy',
+	'model.strategy',
+	'instance.strategy'
 ]
 	
 	

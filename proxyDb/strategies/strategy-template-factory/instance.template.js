@@ -5,12 +5,12 @@ module.exports = class ProxyInstanceTemplate  {
 		this.dbInstance = dbInstance;
 	}
 	
-	update() {
-		throw new Error(`update is not implemented in this strategy.`);
-	}
-	
 	save() {
 		throw new Error(`save is not implemented in this strategy.`);
+	}
+	
+	update() {
+		throw new Error(`update is not implemented in this strategy.`);
 	}
 	
 	refresh() {

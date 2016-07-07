@@ -1,9 +1,11 @@
 const SchemaTemplate = require('../strategy-template-factory').schema;
-class ProxyModel extends require('./proxy.model') {};
 
 module.exports = class ProxySchema extends SchemaTemplate {
-	constructor(dbModel) {
+	constructor(modelName, dbModel) {
+		class ProxyModel extends require('./proxy.model') {};
+		ProxyModel.modelName = modelName;
 		ProxyModel.dbModel = dbModel;
+		
 		return ProxyModel
 	}
 
