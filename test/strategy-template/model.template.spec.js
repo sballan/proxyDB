@@ -1,10 +1,12 @@
 const expect = require('chai').expect;
-const TemplateFactory = require('../../proxyDb/strategies/strategy-template');
+class ModelTemplate extends require('../../proxyDb/strategies/strategy-template-factory').model {};
 
 describe('Model Template', function(){
-	const StrategyTemplate = TemplateFactory.model('myDb')
-	const ModelTemplate = new StrategyTemplate("myModel", 'myConst')
-  
+	const MockModel = {model: 'myModel'}
+	ModelTemplate.dbModel = MockModel;
+	ModelTemplate.modelName = 'myModel';
+
+
 	it('its find and update methods are not implemented', function() {
 		expect(ModelTemplate.find).to.throw(ReferenceError);
 		expect(ModelTemplate.findOne).to.throw(ReferenceError);
@@ -12,9 +14,9 @@ describe('Model Template', function(){
 		expect(ModelTemplate.updateOne).to.throw(ReferenceError);
   });
 
-	it('its has references to its model and constrtuctor', function() {
-		expect(ModelTemplate).to.have.property('model', 'myModel');
-		expect(ModelTemplate).to.have.property('instanceConstructor', 'myConst');
+	it('its has a name and a reference to a dbModel', function() {
+		expect(ModelTemplate).to.have.property('dbModel', MockModel);
+		expect(ModelTemplate).to.have.property('modelName', 'myModel');
   });
 
 

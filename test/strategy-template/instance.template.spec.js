@@ -1,14 +1,13 @@
 const expect = require('chai').expect;
-const TemplateFactory = require('../../proxyDb/strategies/strategy-template-factory');
+const assert = require('chai').assert;
+const InstanceTemplate = require('../../proxyDb/strategies/strategy-template-factory').instance;
 
 describe('Instance Template', function(){
-  const MockModelStrategy = TemplateFactory.model('myDb');
-  const StrategyTemplate = TemplateFactory.instance(MockModelStrategy);
-  
-  const InstanceTemplate = new StrategyTemplate("myInstance")
 
-  it('is a function of type ModelTemplate', function() {
-    console.log(InstanceTemplate)
+  it('is a constructor function', function() {
+    assert.isFunction(InstanceTemplate)
+    assert.isObject(new InstanceTemplate({mock:'data'}))
   });
+
 
 });

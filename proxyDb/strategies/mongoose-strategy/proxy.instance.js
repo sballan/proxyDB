@@ -31,15 +31,6 @@ module.exports = class ProxyInstance extends InstanceTemplate {
 		})
 	}
 
-	proxify(dbInstance) {
-		if(Array.isArray(dbInstance)) {
-    	return dbInstance.map(i=> {
-      	return new this.constructor(i)
-    	})
-  	}
-  
-  	return new this.constructor(dbInstance);
-	}
-  
+
 
 }
