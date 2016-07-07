@@ -4,7 +4,7 @@
   "description": "Syntactic sugar for working with your favorite ODM/ORM",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",

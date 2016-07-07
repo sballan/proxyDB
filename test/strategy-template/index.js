@@ -1,3 +1,5 @@
 describe('Strategy Template', function() {
-	require('./strategy-template.spec');
+	require('./schema.template.spec');
+	require('./model.template.spec');
+	require('./instance.template.spec');
 })

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const expect = require("chai").expect;
 
-describe('Mongoose Model Strategy', function() {
-	const Strategy = require('../model.strategy');
+xdescribe('Mongoose Model Strategy', function() {
+	const Strategy = new require('../proxy.model');
 	const MockUser = require('./models.helper').MockUser;
-	const modelStrategy = Strategy(MockUser, mongoose)
+	const modelStrategy = new Strategy(MockUser, mongoose)
 	let mockUser1;
   let mockUser2;
 
@@ -23,7 +23,6 @@ describe('Mongoose Model Strategy', function() {
 	it('can find an instance', function() {
 		return modelStrategy.findOne({age: 20})
 		.then(function(dbInstance) {
-			console.log(dbInstance)
 			// expect(dbInstance).to.equal(mockUser1)
 		})
   });
