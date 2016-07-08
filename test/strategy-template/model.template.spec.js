@@ -1,6 +1,6 @@
 const Promise = require('bluebird')
 const expect = require('chai').expect;
-class ModelTemplate extends require('../../proxyDb/strategies/strategy-template-factory').model {};
+class ModelTemplate extends require('../../proxyDb/strategy-templates').model {};
 
 const MockModel = class MyModel{
 	constructor(data){this.name=data.name;this._id=-1}

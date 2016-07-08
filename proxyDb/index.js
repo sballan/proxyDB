@@ -1,11 +1,9 @@
-const strategies = require('./strategies');
+const model = require('./proxy.model')
+const instance = require('./proxy.instance')
+const connection = require('./proxy.connection')
 
-module.exports = function ProxyDb(strategy='mongoose') {
-	const proxyDb = {};
-
-	proxyDb.strategy = strategies.register(strategy);
-	proxyDb.proxify = require('./proxify')(strategy);
-	
-	
-	return proxyDb;
+module.exports = {
+	model,
+	instance,
+	connection: (...args)=> new connection(...args)
 }

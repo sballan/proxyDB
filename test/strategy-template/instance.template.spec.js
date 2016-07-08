@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
-const InstanceTemplate = require('../../proxyDb/strategies/strategy-template-factory').instance;
+const InstanceTemplate = require('../../proxyDb/strategy-templates').instance;
 
 describe('Instance Template', function(){
 const dbInstance = {mock: 'data'}

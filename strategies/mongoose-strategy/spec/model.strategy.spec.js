@@ -1,8 +1,8 @@
 const expect = require("chai").expect;
 
 describe('Mongoose Model Strategy', function() {
-	const ModelStrategy = require('../proxy.model');
-	const MockUserModel = require('./models.helper').MockUser;
+	const ModelStrategy = require('../proxy.model.js');
+	const MockUserModel = require('./models.helper.js').MockUser;
 	
 	ModelStrategy.dbModel = MockUserModel;
 	ModelStrategy.modelName = 'MockUser';

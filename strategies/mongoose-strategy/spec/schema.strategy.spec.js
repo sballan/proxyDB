@@ -2,7 +2,7 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
-const ProxySchema = require('../proxy.schema');
+const ProxySchema = require('../proxy.schema.js');
 
 describe('Proxy Schema', function(){
   
