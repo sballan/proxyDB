@@ -1,6 +1,4 @@
-	// The Schema Template acts as a decorator for the Model Template. 
-	// This way, objects created with 'new ProxySchemaTemplate' can be constructor
-	// functions with 'instance properties'.
+// DEPRECATED This class will soon be replaced with the Model Factory
 module.exports = class ProxySchemaTemplate {
 	constructor(modelName, dbModel) {
 		class ProxyModelTemplate extends require('./model.template') {}

@@ -1,3 +1,4 @@
+// DEPRECATED This class will soon be replaced with the Model Factory
 const SchemaTemplate = require('../strategy-template-factory').schema;
 
 module.exports = class ProxySchema extends SchemaTemplate {

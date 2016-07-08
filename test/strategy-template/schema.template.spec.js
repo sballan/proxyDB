@@ -1,3 +1,4 @@
+// DEPRECATED The class being tested will soon be replaced with the Model Factory
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 class ProxySchemaTemplate extends require('../../proxyDb/strategies/strategy-template-factory').schema {};
