@@ -1,9 +1,15 @@
+const assert = require('chai').assert;
+const expect = require('chai').expect;
 
-describe('Manager Factory', function() {
-  it('gives us a factory', function() {
+xdescribe('Manager Factory', function() {
+  
+  before(function(done) {
+    
+  });
+  it('module gives us a constructor', function() {
     
   })
   
   
   
-})
+});

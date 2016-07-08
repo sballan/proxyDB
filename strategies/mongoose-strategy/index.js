@@ -6,4 +6,4 @@ module.exports = {
 	model,
 	instance,
 	connection: (...args)=> new connection(...args)
-}
+};

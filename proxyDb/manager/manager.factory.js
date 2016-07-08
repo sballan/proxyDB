@@ -1,9 +1,12 @@
-const Strategies = require('../strategies');
+const Strategies = require('../../strategies');
 const Factories = require('../factories');
 
-module.exports = class Manager {
-  constructor(strategyName) {
+class Manager {
+  constructor(strategyName, URI) {
     this.strategy = Strategies.get(strategyName);
     this.model = Factories.model(this.strategy.model);
+    this.URI = URI;
   }
 }
+
+module.exports = Manager;

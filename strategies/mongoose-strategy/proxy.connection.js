@@ -1,17 +1,26 @@
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
 
-module.exports = class Connection {
-  constructor(URI) {
+class Connection {
+  constructor(URI, dbName) {
+    if(dbName) URI = `${URI}/${dbName}`;
+    else dbName = URI;
+
+    this.connection = {};
+    this.hellp = {};
     this.URI = URI;  
+
   }
   
   open() {
-    return mongoose.connect(DBURI);
+    this.connection = mongoose.createConnection(this.URI);
+    return this.connection;
   }
   
-  close() {
-    return mongoose.disconnect()
+  close(cb) {
+    return mongoose.disconnect(cb)
   }
   
 }
+
+module.exports = Connection;

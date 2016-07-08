@@ -1,9 +1,21 @@
-const model = require('./proxy.model')
-const instance = require('./proxy.instance')
-const connection = require('./proxy.connection')
+const Manager = require('./manager');
 
-module.exports = {
-	model,
-	instance,
-	connection: (...args)=> new connection(...args)
+class ProxyDb {
+	constructor(strategyName, config) {
+		return new Manager(strategyName, config)
+	}
+
+	static addConnection() {
+
+	}
+
+	static addStrategy(name, path='../../strategies/') {
+
+	}
 }
+
+ProxyDb.connections = {};
+ProxyDb.strategies = {};
+
+
+module.exports = ProxyDb;
