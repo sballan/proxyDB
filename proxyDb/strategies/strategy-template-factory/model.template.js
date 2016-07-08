@@ -3,18 +3,22 @@ const ProxyInstanceTemplate = require('./instance.template');
 module.exports = class ProxyModelTemplate {
 	// Example constructor
 	constructor(...args) {
-		return this.constructor.create(...args)
+		const dbInstance = new this.constructor.dbModel(...args)
+		return this.constructor.proxify(dbInstance)
 	}
 	
-	static create(...args) {
-		const dbModel = this.prototype.constructor.dbModel;
-		
-		if(!dbModel) {
-			throw Error("Create cannot be called without modelName and dbModel defined")
-		}
-
-		const dbInstance = new dbModel(...args); 
-		return this.proxify(dbInstance)
+	static create() {
+		throw new ReferenceError(`create is not implemented in this strategy.`);
+		// const dbModel = this.prototype.constructor.dbModel;
+		// 
+		// if(!dbModel) {
+		// 	throw Error("Create cannot be called without modelName and dbModel defined")
+		// }
+		// 
+		// return dbModel.create(...args)
+		// .then(dbInstance=> {
+		// 	return this.proxify(dbInstance)
+		// })
 	}
 
 	static find() {

@@ -9,7 +9,7 @@ const models = require('./models.helper');
 
 const tests = [
 	'schema.strategy',
-	'model.strategy',
+	'model.strategy', 
 	'instance.strategy'
 ]
 	

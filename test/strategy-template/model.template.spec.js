@@ -1,8 +1,16 @@
+const Promise = require('bluebird')
 const expect = require('chai').expect;
 class ModelTemplate extends require('../../proxyDb/strategies/strategy-template-factory').model {};
 
+const MockModel = class MyModel{
+	constructor(data){this.name=data.name;this._id=-1}
+	static create(data) {
+		data._id = -1;
+		return Promise.resolve(data);
+	}
+}
+
 describe('Model Template', function(){
-	const MockModel = class MyModel{constructor(data){this.name=data.name}}
 	ModelTemplate.dbModel = MockModel;
 	ModelTemplate.modelName = 'myModel';
 
@@ -27,7 +35,6 @@ describe('Model Template', function(){
 		expect(myInstance).to.have.deep.property('dbInstance.name', 'Jane')
 	
   });
-
 
 
 });
