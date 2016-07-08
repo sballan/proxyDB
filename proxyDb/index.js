@@ -1,6 +1,6 @@
 const strategies = require('./strategies');
 
-module.exports = function ProxyDb(strategy) {
+module.exports = function ProxyDb(strategy='mongoose') {
 	const proxyDb = {};
 
 	proxyDb.strategy = strategies.register(strategy);
