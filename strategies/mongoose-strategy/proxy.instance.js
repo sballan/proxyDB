@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const InstanceTemplate = require('../strategy-template-factory').instance;
+const InstanceTemplate = require('../../proxyDb/strategy-templates').instance;
 
-module.exports = class ProxyInstance extends InstanceTemplate {
+class ProxyInstance extends InstanceTemplate {
 	constructor(dbInstance) {
 		super(dbInstance)
 	}
@@ -29,6 +28,6 @@ module.exports = class ProxyInstance extends InstanceTemplate {
 		})
 	}
 
-
-
 }
+
+module.exports = ProxyInstance;

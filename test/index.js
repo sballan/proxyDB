@@ -1,5 +1,7 @@
 describe('|- ProxyDb -|', function() {
-  require('./strategy-template');
+  require('./manager');
   require('./factories');
-  require('../proxyDb/strategies/mongoose-strategy/spec');
+  require('./strategy-template');
+  
+  require('../strategies/mongoose-strategy/spec');
 });

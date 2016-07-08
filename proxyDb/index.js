@@ -1,11 +1,21 @@
-const strategies = require('./strategies');
+const Manager = require('./manager');
 
-module.exports = function ProxyDb(strategy) {
-	const proxyDb = {};
+class ProxyDb {
+	constructor(strategyName, config) {
+		return new Manager(strategyName, config)
+	}
 
-	proxyDb.strategy = strategies.register(strategy);
-	proxyDb.proxify = require('./proxify')(strategy);
-	
-	
-	return proxyDb;
+	static addConnection() {
+
+	}
+
+	static addStrategy(name, path='../../strategies/') {
+
+	}
 }
+
+ProxyDb.connections = {};
+ProxyDb.strategies = {};
+
+
+module.exports = ProxyDb;

@@ -1,7 +1,7 @@
 // DEPRECATED This class will soon be replaced with the Model Factory
 module.exports = class ProxySchemaTemplate {
 	constructor(modelName, dbModel) {
-		class ProxyModelTemplate extends require('./model.template') {}
+		class ProxyModelTemplate extends require('./model.template.js') {}
 
 		ProxyModelTemplate.modelName = modelName;
 		ProxyModelTemplate.dbModel = dbModel;

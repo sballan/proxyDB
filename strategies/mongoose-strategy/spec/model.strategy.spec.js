@@ -1,8 +1,8 @@
 const expect = require("chai").expect;
 
-describe('Mongoose Model Strategy', function() {
-	const ModelStrategy = require('../proxy.model');
-	const MockUserModel = require('./models.helper').MockUser;
+describe('Model Strategy', function() {
+	const ModelStrategy = require('../proxy.model.js');
+	const MockUserModel = require('./models.helper.js').MockUser;
 	
 	ModelStrategy.dbModel = MockUserModel;
 	ModelStrategy.modelName = 'MockUser';
@@ -16,11 +16,11 @@ describe('Mongoose Model Strategy', function() {
 			mockUser1 = mockUsers[0];
 			mockUser2 = mockUsers[1];
 		})
-	})
+	});
 
 	after(function() {
 		return MockUserModel.remove({}).exec();
-	})
+	});
 	
 	it('can find a multiple instances with find', function() {
 		return ModelStrategy.find({age: 20})

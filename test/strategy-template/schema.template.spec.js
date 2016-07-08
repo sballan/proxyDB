@@ -1,7 +1,7 @@
 // DEPRECATED The class being tested will soon be replaced with the Model Factory
 const expect = require('chai').expect;
 const assert = require('chai').assert;
-class ProxySchemaTemplate extends require('../../proxyDb/strategies/strategy-template-factory').schema {};
+class ProxySchemaTemplate extends require('../../proxyDb/strategy-templates').schema {}
 
 describe('Schema Template', function(){
   
@@ -17,9 +17,9 @@ describe('Schema Template', function(){
 		}
 		const MockModel = new ProxySchemaTemplate('myModel', dbModel);
 
-		assert.isFunction(MockModel)
-		expect(MockModel).to.have.property('name', 'ProxyModelTemplate')
-		expect(MockModel).to.have.property('modelName', 'myModel')
+		assert.isFunction(MockModel);
+		expect(MockModel).to.have.property('name', 'ProxyModelTemplate');
+		expect(MockModel).to.have.property('modelName', 'myModel');
 		expect(MockModel).to.have.property('dbModel', dbModel)
   });
 

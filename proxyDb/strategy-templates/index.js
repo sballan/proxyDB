@@ -1,6 +1,6 @@
-const SchemaTemplate = require('./schema.template')
-const ModelTemplate = require('./model.template')
-const InstanceTemplate = require('./instance.template')
+const SchemaTemplate = require('./schema.template.js')
+const ModelTemplate = require('./model.template.js')
+const InstanceTemplate = require('./instance.template.js')
 
 module.exports = {
 	schema: SchemaTemplate,
