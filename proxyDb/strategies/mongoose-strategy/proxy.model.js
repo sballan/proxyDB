@@ -8,14 +8,13 @@ module.exports = class ProxyModel extends ModelTemplate {
 	}
 	
 	static create(query) {
-		const dbModel = this.prototype.constructor.dbModel;
-		
-		if(!dbModel) {
+		if(!this.dbModel) {
 			throw ("Create cannot be called without modelName and dbModel defined")
 		}
-
-		const dbInstance = new dbModel(query); 
-		return this.proxify(dbInstance)
+		
+		return this.dbModel.create(query)
+		.then(this.proxify)
+		
 	}
 	
 	static find(query) {

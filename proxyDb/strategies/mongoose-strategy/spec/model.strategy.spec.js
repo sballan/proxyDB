@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const expect = require("chai").expect;
 
 describe('Mongoose Model Strategy', function() {
@@ -50,11 +49,10 @@ describe('Mongoose Model Strategy', function() {
   });
 	
 	it('can create an instance with create()', function() {
-		const mockUser3 = new ModelStrategy({name: 'Jim Smith', age: 25})
-		return mockUser3.dbInstance.save()
-		.then(function(dbInstance){
-			expect(dbInstance.age).to.equal(25);
-			expect(dbInstance.name).to.equal('Jim Smith');
+		return ModelStrategy.create({name: 'Jim Smith', age: 25})
+		.then(function(pInstance){
+			expect(pInstance.dbInstance.age).to.equal(25);
+			expect(pInstance.dbInstance.name).to.equal('Jim Smith');
 		})
   });
 
