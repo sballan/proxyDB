@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const expect = require("chai").expect;
 
-xdescribe('Mongoose Instance Strategy', function() {
+describe('Mongoose Instance Strategy', function() {
 	const Strategy = new require('../proxy.instance');
 	let instanceStrategy;
-	let MockUser = require('./models.helper').MockUser;
-	let mockUser;
+	let MockUserModel = require('./models.helper').MockUser;
+	let mockUser = new MockUserModel({name: "Jane Doe", age: 25})
 
 
-	beforeEach(function() {
+	before(function() {
 		return MockUser.create({name: "Jane Doe", age: 25})
 		.then(dbMockUser=> {
 			mockUser = dbMockUser;
@@ -16,7 +16,7 @@ xdescribe('Mongoose Instance Strategy', function() {
 		})
 	})
 	
-	afterEach(function() {
+	after(function() {
 		return MockUser.remove({}).exec();
 	})
 
