@@ -5,7 +5,7 @@ const ModelFactory = require('../../proxyDb/factories/model.factory');
 
 describe('Model Factory', function() {
   
-  class MockStrategy{constructor(n) {this.n=n}}
+  class MockStrategy{}
   class MockModel{};
   let myFactory;
   
@@ -14,7 +14,7 @@ describe('Model Factory', function() {
     assert.isFunction(myFactory);
   })
   
-  it('Returned function is a constructor that returns ProxyModels', function() {
+  it('Returned function is a constructor that returns new ProxyModels', function() {
     const myModel = myFactory('myModel', MockModel);
     
     expect(myModel).to.have.property('modelName', 'myModel')
