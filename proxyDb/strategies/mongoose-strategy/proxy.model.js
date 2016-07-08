@@ -11,7 +11,6 @@ module.exports = class ProxyModel extends ModelTemplate {
 		if(!this.dbModel) {
 			throw ("Create cannot be called without modelName and dbModel defined")
 		}
-		
 		return this.dbModel.create(query)
 		.then(this.proxify)
 		

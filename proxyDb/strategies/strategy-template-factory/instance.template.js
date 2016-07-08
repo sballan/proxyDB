@@ -1,10 +1,15 @@
 const ProxyModelTemplate = require('./model.template');
 
-module.exports = class ProxyInstanceTemplate  {
+/**
+ * Is a template for a ProxyDb instance. This class is meant to be extended.
+ * @type ProxyModelTemplate $cls
+ * @param {String} dbInstance Database Instance
+ */
+class ProxyInstanceTemplate {
 	constructor(dbInstance) {
 		this.dbInstance = dbInstance;
 	}
-	
+
 	save() {
 		throw new Error(`save is not implemented in this strategy.`);
 	}
@@ -16,7 +21,7 @@ module.exports = class ProxyInstanceTemplate  {
 	refresh() {
 		throw new Error(`refresh is not implemented in this strategy.`);
 	}
-
+	
 	set(data) {
 		for(let key in data) {
 			if(this[key]) throw Error("Cannot reassign ProxyDb properties.")
@@ -24,6 +29,7 @@ module.exports = class ProxyInstanceTemplate  {
 			this.dbInstance[key] = data[key];
 			this[key] = this.dbInstance[key];
 		}
+		return this;
 	}
 
 	get doc() {
@@ -46,3 +52,5 @@ module.exports = class ProxyInstanceTemplate  {
 
 
 }
+
+module.exports = ProxyInstanceTemplate
