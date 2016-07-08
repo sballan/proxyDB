@@ -1,4 +1,9 @@
+const model = require('./proxy.model')
+const instance = require('./proxy.instance')
+const connection = require('./proxy.connection')
+
 module.exports = {
-	model: require('./model.strategy'),
-	instance: require('./instance.strategy')
+	model,
+	instance,
+	connection: (...args)=> new connection(...args)
 }
