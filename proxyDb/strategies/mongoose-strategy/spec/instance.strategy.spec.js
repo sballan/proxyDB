@@ -1,50 +1,42 @@
 const mongoose = require('mongoose');
 const expect = require("chai").expect;
+const InstanceConstructor = require('../proxy.instance')
 
 describe('Mongoose Instance Strategy', function() {
-	const Strategy = new require('../proxy.instance');
-	let instanceStrategy;
 	let MockUserModel = require('./models.helper').MockUser;
 	let mockUser = new MockUserModel({name: "Jane Doe", age: 25})
-
-
-	before(function() {
-		return MockUser.create({name: "Jane Doe", age: 25})
-		.then(dbMockUser=> {
-			mockUser = dbMockUser;
-			instanceStrategy = Strategy(mockUser, mongoose);
-		})
-	})
+	let InstanceStrategy = new InstanceConstructor(mockUser);
+	
 	
 	after(function() {
-		return MockUser.remove({}).exec();
+		return MockUserModel.remove({}).exec();
 	})
 
 	it('has reference to Mongoose document instance', function() {
 		expect(mockUser.name).to.equal('Jane Doe');
 		expect(mockUser.age).to.equal(25);
-    expect(instanceStrategy.instance).to.equal(mockUser);
+    expect(InstanceStrategy.dbInstance).to.equal(mockUser);
   });
 
 	it('can refresh its instance', function() {
 		expect(mockUser.age).to.equal(25);
 
-		return instanceStrategy.instance.set({age:30}).save()
+		return InstanceStrategy.dbInstance.set({age:30}).save()
 		.then(function(dbInstance) {
-			expect(instanceStrategy.instance.age).to.equal(30);
-			return instanceStrategy.refresh()
+			// expect(InstanceStrategy.dbInstance.age).to.equal(30);
+			return InstanceStrategy.refresh()
 		})
 		.then(function(refreshedInstance) {
-			expect(instanceStrategy.instance.age)
+			expect(InstanceStrategy.dbInstance.age)
 				.to.equal(30)
 		})
     
   });
 
 	it('can update its instance', function(done) {
-		expect(instanceStrategy.instance.age).to.equal(25);
+		expect(InstanceStrategy.dbInstance.age).to.equal(25);
 
-		instanceStrategy.update({age:20})
+		InstanceStrategy.update({age:20})
 		.then(function(dbInstance) {
 			expect(dbInstance.instance.age)
 				.to.equal(20);
@@ -54,10 +46,10 @@ describe('Mongoose Instance Strategy', function() {
 	})
 	
 	it('can save its instance', function() {
-		expect(instanceStrategy.instance.age).to.equal(25);
-		instanceStrategy.instance.age = 20;
+		expect(InstanceStrategy.dbInstance.age).to.equal(25);
+		InstanceStrategy.dbInstance.age = 20;
 		
-		return instanceStrategy.save()
+		return InstanceStrategy.save()
 		.then(function(dbInstance) {
 			expect(dbInstance.instance.age).to.equal(20);
 		})
