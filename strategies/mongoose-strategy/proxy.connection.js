@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
 
-class Connection {
+class ProxyConnection {
   constructor(URI, dbName) {
     if(dbName) URI = `${URI}/${dbName}`;
     else dbName = URI;
@@ -22,6 +22,6 @@ class Connection {
   
 }
 
-Connection.dbManager = mongoose;
+ProxyConnection.dbManager = mongoose;
 
-module.exports = Connection;
+module.exports = ProxyConnection;

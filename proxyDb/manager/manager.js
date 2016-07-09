@@ -16,7 +16,8 @@ class Manager {
   }
 
   model(name, dbModel) {
-    const model = new this.Model(name, dbModel);
+    // FIXME new this.model? weird behavior
+    const model = this.Model(name, dbModel);
     this.models[name] = model;
     return model;
   }
@@ -31,9 +32,9 @@ class Manager {
     return this.strategy.instance;
   }
 
-  setConnection(URI) {
-    this.ProxyDb.addConnection(URI)
-  }
+  // setConnection(URI) {
+  //   this.ProxyDb.addConnection(URI)
+  // }
 
 
 }
