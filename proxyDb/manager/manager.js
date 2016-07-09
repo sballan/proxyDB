@@ -1,20 +1,30 @@
-const modelFactory = require('./model.factory');
+const _ = require('lodash');
+const configFactory = require('./config.factory');
 
 class Manager {
   constructor(strategyName, config={}) {
     this.ProxyDb = config.ProxyDb;
-    this.strategy = this.ProxyDb.strategies[strategyName];
     this.models = {};
+    this.connections = {};
+
+    this.strategy = this.ProxyDb.strategies[strategyName];
+    _.defaults(config, configFactory(this.strategy));
+    // _.defaults(this, config);
+
+    this.Model = config.Model;
+    this.Connection = config.Connection;
   }
 
   model(name, dbModel) {
-    const model = new modelFactory(name, dbModel);
+    const model = new this.Model(name, dbModel);
     this.models[name] = model;
     return model;
   }
 
-  get connection() {
-    return this.strategy.connection;
+  connection(URI, dbName) {
+    const connection = new this.Connection(URI, dbName);
+    this.connections[dbName] = connection;
+    return connection;
   }
 
   get instance() {

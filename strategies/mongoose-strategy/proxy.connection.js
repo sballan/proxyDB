@@ -6,20 +6,22 @@ class Connection {
     if(dbName) URI = `${URI}/${dbName}`;
     else dbName = URI;
 
-    this.connection = {};
-    this.URI = URI;  
+    this.connection = mongoose.createConnection();
+    this.URI = URI;
+    this.dbName = dbName;
 
   }
   
   open() {
-    this.connection = mongoose.createConnection(this.URI);
-    return this.connection;
+    return this.connection.open(this.URI);
   }
   
   close(cb) {
-    return mongoose.disconnect(cb)
+    return this.connection.close(cb)
   }
   
 }
+
+Connection.dbManager = mongoose;
 
 module.exports = Connection;

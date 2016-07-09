@@ -6,16 +6,16 @@ xdescribe('Connection Strategy', function() {
   const ConnectionConstructor = require('../proxy.connection');
   const ProxyConnection = new ConnectionConstructor('mongodb://localhost:27017', 'proxyDb-mock-manager')
 
-  before(function() {
+  afterEach(function(done) {
+    mongoose.disconnect(done);
+  });
+
+  xit('opens a connection to mongoose', function() {
     ProxyConnection.open();
   });
 
-  after(function(done) {
-    ProxyConnection.close(done)
-  });
-
-  it('opens a connection to mongoose', function() {
-
+  xit('closes a connection to mongoose', function(done) {
+    ProxyConnection.close(done);
   })
 
 
