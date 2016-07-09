@@ -1,3 +1,3 @@
 describe('Database Manager', function() {
-	require('./manager.factory.spec');
-})
+	require('./manager.spec.js');
+});

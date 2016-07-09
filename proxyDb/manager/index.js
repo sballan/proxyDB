@@ -1,1 +1,1 @@
-module.exports = require('./manager.factory');
+module.exports = require('./manager');

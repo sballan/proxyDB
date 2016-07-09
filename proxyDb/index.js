@@ -13,6 +13,8 @@ class ProxyDb {
 			ProxyDb.strategies[strategyName] = Strategies[strategyName];
 			config.strategy = ProxyDb.strategies[strategyName];
 		}
+		
+		
 
 		return new Manager(strategyName, config)
 	}
