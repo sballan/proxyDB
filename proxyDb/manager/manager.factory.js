@@ -1,11 +1,10 @@
-const Strategies = require('../../strategies');
 const Factories = require('../factories');
 
 class Manager {
-  constructor(strategyName, URI) {
-    this.strategy = Strategies.get(strategyName);
+  constructor(strategyName, config) {
+    this.ProxyDb = config.ProxyDb;
+    this.strategy = this.ProxyDb.strategies[strategyName];
     this.model = Factories.model(this.strategy.model);
-    this.URI = URI;
   }
 }
 
