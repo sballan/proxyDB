@@ -5,10 +5,13 @@ class Manager {
     this.ProxyDb = config.ProxyDb;
     this.strategy = this.ProxyDb.strategies[strategyName];
     this.models = {};
+    this.modelFactory = Factories.model(this.strategy.model);
   }
 
-  model(...args) {
-    return new Factories.model(this.strategy.model);
+  model(name, dbModel) {
+    const model = new this.modelFactory(name, dbModel);
+    this.models[name] = model;
+    return model;
   }
 
   get connection() {
