@@ -1,3 +1,3 @@
 module.exports = {
-  model: require('./model.factory')
+  model: require('./../manager/model.factory.js')
 }

@@ -1,11 +1,11 @@
-const Factories = require('../factories');
+const modelFactory = require('./model.factory');
 
 class Manager {
   constructor(strategyName, config={}) {
     this.ProxyDb = config.ProxyDb;
     this.strategy = this.ProxyDb.strategies[strategyName];
     this.models = {};
-    this.modelFactory = Factories.model(this.strategy.model);
+    this.modelFactory = modelFactory(this.strategy.model);
   }
 
   model(name, dbModel) {

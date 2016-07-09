@@ -1,7 +1,7 @@
 const assert = require('chai').assert
 const expect = require('chai').expect
 
-const ModelFactory = require('../../proxyDb/factories/model.factory');
+const ModelFactory = require('../../proxyDb/manager/model.factory.js');
 
 describe('Model Factory', function() {
   
