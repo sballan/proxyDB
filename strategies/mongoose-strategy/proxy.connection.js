@@ -7,7 +7,6 @@ class Connection {
     else dbName = URI;
 
     this.connection = {};
-    this.hellp = {};
     this.URI = URI;  
 
   }

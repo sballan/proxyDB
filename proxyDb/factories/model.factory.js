@@ -1,5 +1,4 @@
-module.exports = class ModelFactory {
-  constructor(ModelStrategy) {
+module.exports = function ModelFactory(ModelStrategy) {
     
     /**
      * Makes ProxyModels using the Strategy with the class was constructed
@@ -15,7 +14,6 @@ module.exports = class ModelFactory {
       ProxyModel.dbModel = dbModel;
       return ProxyModel;
     }
-  }
 
 }
 
