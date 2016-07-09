@@ -1,4 +1,4 @@
-const Factories = require('../factories');
+const modelFactory = require('./model.factory');
 
 class Manager {
   constructor(strategyName, config={}) {
@@ -7,8 +7,10 @@ class Manager {
     this.models = {};
   }
 
-  model(...args) {
-    return new Factories.model(this.strategy.model);
+  model(name, dbModel) {
+    const model = new modelFactory(name, dbModel);
+    this.models[name] = model;
+    return model;
   }
 
   get connection() {

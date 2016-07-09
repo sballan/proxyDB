@@ -1,12 +1,19 @@
 const Manager = require('./manager');
 const Strategies = require('../strategies')();
+const DEFAULT_STRATEGY = 'mongoose';
 
 class ProxyDb {
 	constructor(strategyName, config={}) {
+		if(typeof config === 'string') config = {strategyPath: config};
+
 		config.ProxyDb = ProxyDb;
 
+		if(!strategyName) {
+			console.warn(`|- WARNING: No strategy selected, using default strategy (${DEFAULT_STRATEGY}) -|`)
+		}
+
 		if(!!config.strategyPath) {
-			ProxyDb.strategies[strategyName] = require(config.path);
+			ProxyDb.strategies[strategyName] = require(config.strategyPath);
 		}
 
 		if(Strategies[strategyName]) {
