@@ -19,7 +19,6 @@ describe('Manager', function() {
     const manager = new Manager('mockStrategy', config);
     expect(manager).to.have.property('strategy', Strategy);
     expect(manager).to.have.property('models');
-    expect(manager).to.have.property('modelFactory');
 
   });
   
