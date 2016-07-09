@@ -28,12 +28,6 @@ class ProxyDb {
 		return manager;
 	}
 
-	static addConnection(URI, dbName) {
-		if(dbName) URI = `${URI}/${dbName}`;
-		else dbName = URI;
-		this.connections[dbName] = URI;
-	}
-
 	static addStrategy(name, path=Strategies[name]) {
 		let strategy;
 
@@ -46,9 +40,15 @@ class ProxyDb {
 		}
 		ProxyDb.strategies[name] = strategy;
 	}
+	
+	static get connections() {
+		return ProxyDb.managers.map(manager=> {
+			return manager.connections
+		})
+		
+	}
 }
 
-ProxyDb.connections = {};
 ProxyDb.strategies = {};
 
 
