@@ -12,7 +12,7 @@ class Manager {
     // _.defaults(this, config);
 
     this.Model = config.Model;
-    this.Connection = config.Connection;
+    this.Connection = config.Connection();
   }
 
   model(name, dbModel) {
