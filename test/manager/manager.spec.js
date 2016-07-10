@@ -3,21 +3,21 @@ const expect = require('chai').expect;
 
 describe('Manager', function() {
   class Strategy {}
-  class DbModel {}
-  class MockDbModel {}
-  class mockModel{}
-  Strategy.model = DbModel;
-  Strategy.dbModel = MockDbModel;
-  MockDbModel.dbModel = mockModel;
+  class MockDbModel {
+    constructor(dbInstance){return dbInstance} 
+  }
+  class MockModel { 
+    constructor(dbInstance){return{dbInstance}}
+  }
+  Strategy.model = class ModelStrategy {}
+  Strategy.connection = class Connection {}
+  Strategy.dbManager = 'MockManager'
+  MockModel.dbModel = MockDbModel;
 
   const Manager = require(rootPath+'/manager/manager');
-  const config = {
-    ProxyDb: { strategies: { mockStrategy: Strategy } }
-  };
+  const config = {ProxyDb:{strategies:{mockStrategy:Strategy}}}
 
   let manager;
-  let MockUser;
-  let mockInstance;
 
   it('module gives us a constructor function', function() {
     assert.isFunction(Manager);
@@ -26,19 +26,24 @@ describe('Manager', function() {
   it('instance of Manager has reference to its Strategy', function() {
     manager = new Manager('mockStrategy', config);
     expect(manager).to.have.property('strategy', Strategy);
-    expect(manager).to.have.property('models');
+    expect(manager).to.have.deep.property('strategy.model', Strategy.model);
+    expect(manager).to.have.deep.property('strategy.connection', Strategy.connection);
   });
 
-  it('can create new ProxyModels', function() {
-    MockUser = manager.model('MockUser', mockModel);
-    expect(MockUser).to.have.property('dbModel', mockModel);
+  it('can create and register new ProxyModels', function() {
+    const MockUser = manager.model('MockUser', MockDbModel);
+    
+    expect(manager).to.have.deep.property('models.MockUser', MockUser);
+    assert.isFunction(MockUser);
+    expect(MockUser).to.have.property('dbModel', MockDbModel);
   });
-
-  it('ProxyModels can create new ProxyInstances', function() {
-    const dbInstance = {name: 'Jane', age: 42};
-    mockInstance = new MockUser(dbInstance);
-    expect(mockInstance.dbInstance).to.have.property('dbInstance', dbInstance);
-  })
+  
+  it('can create and register new ProxyConnections', function() {
+    const MockConnection = manager.connection('path/to/uri', 'mock-db');
+    
+    expect(manager).to.have.deep.property('connections.mock-db')
+    
+  });
 
   
   

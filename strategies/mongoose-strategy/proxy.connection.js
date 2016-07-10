@@ -1,15 +1,15 @@
 const Promise = require('bluebird');
 const mongoose = require('mongoose');
 
-class ProxyConnection {
+const ConnectionTemplate = require('../../proxyDb/strategy-templates/').connection;
+
+class ProxyConnection extends ConnectionTemplate {
   constructor(URI, dbName) {
-    if(dbName) URI = `${URI}/${dbName}`;
-    else dbName = URI;
-
-    this.connection = mongoose.createConnection();
-    this.URI = URI;
-    this.dbName = dbName;
-
+    super(URI, dbName)
+  }
+  
+  static createConnection() {
+    return this.prototype.constructor.dbManager.createConnection();
   }
   
   open() {

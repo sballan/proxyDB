@@ -1,4 +1,4 @@
-module.exports = function ModelFactory(ModelStrategy) {
+module.exports = function ModelFactory(strategy) {
     
     /**
      * Makes ProxyModels using the Strategy with the class was constructed
@@ -8,7 +8,7 @@ module.exports = function ModelFactory(ModelStrategy) {
      * @return {ProxyModel}           A Proxified version of this model.
      */
     return function modelFactory(modelName, dbModel) {
-      class ProxyModel extends ModelStrategy {}
+      class ProxyModel extends strategy.model {}
       
       ProxyModel.modelName = modelName;
       ProxyModel.dbModel = dbModel;
