@@ -9,7 +9,6 @@ const models = require('./models.helper.js');
 
 const tests = [
 	'connection.strategy',
-	'schema.strategy',
 	'model.strategy', 
 	'instance.strategy'
 ]

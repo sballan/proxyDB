@@ -9,14 +9,13 @@ class Manager {
 
     this.strategy = this.ProxyDb.strategies[strategyName];
     _.defaults(config, configFactory(this.strategy));
-    // _.defaults(this, config);
 
     this.Model = config.Model;
     this.Connection = config.Connection;
   }
 
   model(name, dbModel) {
-    const model = new this.Model(name, dbModel);
+    const model = this.Model(name, dbModel);
     this.models[name] = model;
     return model;
   }
@@ -29,10 +28,6 @@ class Manager {
 
   get instance() {
     return this.strategy.instance;
-  }
-
-  setConnection(URI) {
-    this.ProxyDb.addConnection(URI)
   }
 
 

@@ -1,10 +1,12 @@
 const path = require('path');
 global.rootPath = path.resolve('./proxyDb');
 
-describe('|- ProxyDb -|', function() {
-  require('./proxyDb.spec');
+describe('__________________ProxyDb__________________\n', function() {
   require('./manager');
   require('./strategy-template');
-
-  require('../strategies/mongoose-strategy/spec');
+  require('./full');
+  
 });
+describe('__________________Strategies__________________\n', function() {
+  require('../strategies/mongoose-strategy/spec');
+})

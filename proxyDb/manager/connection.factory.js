@@ -1,11 +1,8 @@
-module.exports = function ConnectionFactory(ConnectionStrategy) {
+module.exports = function ConnectionFactory(strategy) {
 
-  return function connectionFactoryFactory(odm) {
-    class ProxyConnection extends ConnectionStrategy {}
-    
-    ProxyConnection.dbManager = ConnectionStrategy.dbManager;
-    
-    return ProxyConnection;
-  }
+  class ProxyConnection extends strategy.connection {}
+  ProxyConnection.dbManager = strategy.dbManager;
+  
+  return ProxyConnection;
 
 }

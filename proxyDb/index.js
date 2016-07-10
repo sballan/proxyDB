@@ -12,6 +12,7 @@ class ProxyDb {
 
 		if(!strategyName) {
 			console.warn(`|- WARNING: No strategy selected, using default strategy (${DEFAULT_STRATEGY}) -|`)
+			strategyName = DEFAULT_STRATEGY;
 		}
 
 		if(!!config.strategyPath) {
