@@ -12,6 +12,7 @@ module.exports = function ModelFactory(strategy) {
       
       ProxyModel.modelName = modelName;
       ProxyModel.dbModel = dbModel;
+      ProxyModel.constructor.dbModel = dbModel;
       return ProxyModel;
     }
 

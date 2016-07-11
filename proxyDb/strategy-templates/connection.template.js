@@ -5,10 +5,6 @@ class ConnectionTemplate {
     
     this.URI = URI;
     this.dbName = dbName;
-    
-    this.dbManager = this.constructor.dbManager;
-    this.dbConnection = this.constructor.createConnection();
-    
   }
   
   static createConnection() {

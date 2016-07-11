@@ -1,27 +1,24 @@
-const Promise = require('bluebird');
-const mongoose = require('mongoose');
-
 const ConnectionTemplate = require('../../proxyDb/strategy-templates/').connection;
 
 class ProxyConnection extends ConnectionTemplate {
-  constructor(URI, dbName) {
+  constructor(URI='mongodb://localhost:27017', dbName='proxyDb-test') {
     super(URI, dbName)
+
   }
   
-  static createConnection() {
-    return this.prototype.constructor.dbManager.createConnection();
+  static createConnection(URI=this.URI) {
+    return this.dbManager.createConnection(URI);
   }
   
-  open() {
-    return this.connection.open(this.URI);
+  // TODO Promisify this function
+  open(cb) {
+    return this.dbConnection.open(this.URI, cb);
   }
   
   close(cb) {
-    return this.connection.close(cb)
+    return this.dbConnection.close(cb)
   }
   
 }
-
-ProxyConnection.dbManager = mongoose;
 
 module.exports = ProxyConnection;
