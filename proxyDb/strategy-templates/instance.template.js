@@ -1,4 +1,4 @@
-const ProxyModelTemplate = require('./model.template');
+const ProxyModelTemplate = require('./model.template.js');
 
 /**
  * Is a template for a ProxyDb instance. This class is meant to be extended.

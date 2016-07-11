@@ -1,11 +1,12 @@
-const SchemaTemplate = require('./schema.template')
-const ModelTemplate = require('./model.template')
-const InstanceTemplate = require('./instance.template')
+const ConnectionTemplate = require('./connection.template.js')
+const ModelTemplate = require('./model.template.js')
+const InstanceTemplate = require('./instance.template.js')
 
 module.exports = {
-	schema: SchemaTemplate,
+	connection: ConnectionTemplate,
 	model: ModelTemplate,
-	instance: InstanceTemplate
+	instance: InstanceTemplate,
+	dbManager: 'REPLACE WITH ORM/ODM'
 }
 
 

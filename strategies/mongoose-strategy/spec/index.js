@@ -4,11 +4,11 @@ const Promise = require("bluebird");
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 
-const connections = require('./connections.helper');
-const models = require('./models.helper');
+const connections = require('./connections.helper.js');
+const models = require('./models.helper.js');
 
 const tests = [
-	'schema.strategy',
+	'connection.strategy',
 	'model.strategy', 
 	'instance.strategy'
 ]

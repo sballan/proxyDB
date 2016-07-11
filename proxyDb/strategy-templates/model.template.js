@@ -1,6 +1,6 @@
-const ProxyInstanceTemplate = require('./instance.template');
+const ProxyInstanceTemplate = require('./instance.template.js');
 
-module.exports = class ProxyModelTemplate {
+class ProxyModelTemplate {
 	// Example constructor
 	constructor(...args) {
 		const dbInstance = new this.constructor.dbModel(...args)
@@ -47,3 +47,5 @@ module.exports = class ProxyModelTemplate {
 		return new ProxyInstanceTemplate(dbInstance);
 	}
 }
+
+module.exports = ProxyModelTemplate
