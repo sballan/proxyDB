@@ -8,11 +8,8 @@ class Manager {
     this.connections = {};
 
     this.strategy = this.ProxyDb.strategies[strategyName];
-    _.defaults(config, configFactory(this.strategy));
-
-    this.Model = config.Model;
-    this.Connection = config.Connection;
-    this.dbManager = this.strategy.dbManager;
+    // _.defaults(config, configFactory(this.strategy));
+    this.config = configFactory(this.strategy)
   }
 
   model(...args) {
@@ -28,14 +25,20 @@ class Manager {
 
   connection(URI, dbName) {
     const connection = new this.Connection(URI, dbName);
-    console.log(this.Connection)
-    connection.dbConnection = this.dbManager.createConnection()
     this.connections[dbName] = connection;
     return connection;
   }
 
-  get instance() {
-    return this.strategy.instance;
+  get dbManager() {
+    return this.config.dbManager;
+  }
+
+  get Model() {
+    return this.config.Model;
+  }
+
+  get Connection() {
+    return this.config.Connection;
   }
 
 

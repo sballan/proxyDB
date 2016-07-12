@@ -7,6 +7,18 @@ mongoose.Promise = Promise;
 const connections = require('./connections.helper.js');
 const models = require('./models.helper.js');
 
+mongoose.connection.on('open', function (ref) {
+  console.log('---Connected to mongo server.---');
+});
+
+mongoose.connection.on('close', function (ref) {
+  console.log('---Closing connection to mongo server.---');
+});
+mongoose.connection.on('error', function (err) {
+  console.log('---Could not connect to mongo server!---');
+  console.log(err);
+});
+
 const tests = [
 	'connection.strategy',
 	'model.strategy', 

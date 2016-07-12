@@ -3,6 +3,8 @@ module.exports = function ConnectionFactory(strategy) {
   // new instances will have direct access
   ProxyConnection.dbManager = strategy.dbManager;
   ProxyConnection.prototype.dbManager = strategy.dbManager;
+  ProxyConnection.prototype.dbConnection = strategy.dbManager.connection;
+
   
   return ProxyConnection;
 

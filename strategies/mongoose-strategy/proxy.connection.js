@@ -3,14 +3,9 @@ const ConnectionTemplate = require('../../proxyDb/strategy-templates/').connecti
 class ProxyConnection extends ConnectionTemplate {
   constructor(URI='mongodb://localhost:27017', dbName='proxyDb-test') {
     super(URI, dbName)
-
   }
   
-  static createConnection(URI=this.URI) {
-    return this.dbManager.createConnection(URI);
-  }
-  
-  // TODO Promisify this function
+  // TODO Promisify these functions
   open(cb) {
     return this.dbConnection.open(this.URI, cb);
   }

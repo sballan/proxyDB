@@ -4,6 +4,7 @@ const connectionFactory = require('./connection.factory');
 module.exports = function configFactory(strategy) {
   return {
     Model: modelFactory(strategy),
-    Connection: connectionFactory(strategy)
+    Connection: connectionFactory(strategy),
+    get dbManager() { return strategy.dbManager }
   }
 };
