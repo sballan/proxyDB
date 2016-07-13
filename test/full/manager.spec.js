@@ -5,11 +5,16 @@ const Promise = require('bluebird');
 
 const ProxyDb = require(rootPath+'/index');
 
+// FIXME I think the various instances of mongoose being used here aren't all the same...sounds crazy but the Promise behavior here is pretty crazy too
+
 describe('Manager', function() {
   let manager;
   let mongoose;
   let connection;
   
+  after(function(done) {
+    mongoose.connection.close(done)
+  })
 
   it(`can be constructed using 'new ProxyDb()'`, function() {
     manager = new ProxyDb('mongoose');
@@ -23,6 +28,7 @@ describe('Manager', function() {
   
   it('strategy has a reference to its dbManager', function() {
     mongoose = manager.strategy.dbManager;
+    mongoose.Promise=Promise
     expect(mongoose).to.equal(manager.strategy.dbManager)
   })
   
@@ -43,35 +49,24 @@ describe('Manager', function() {
     expect(manager).to.have.deep.property('_models.User');
   })
 
-  it('ProxyModels can create new dbInstances which are also added to database', function() {
+  it('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
     const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
-    
-    return Promise.resolve({})
-    .then(function() {
-      return sam.save()
-    })      
+
+    return sam.save()    
     .then(function(dbSam) {
       return User.dbModel.findById(sam.dbInstance._id)
     })
     .then(function(dbSam) {
-      console.log("What?")
+      console.log("TEST IS PASSING:", dbSam.id===sam.dbInstance.id)
       expect(dbSam.id).to.equal(sam.dbInstance.id)
-      return Promise.resolve({})
     },
     function(err) {
-      console.log("ERROR")
       assert.fail(err)
       console.log(err)
-      return Promise.resolve({})
     })
     
   })
-
-  it('can work before this function?', function() {
-
-  })
-  
   
   
 
