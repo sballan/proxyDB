@@ -1,11 +1,11 @@
 const expect = require("chai").expect;
 
-describe('Model Strategy', function() {
+xdescribe('Model Strategy', function() {
 	const ModelStrategy = require('../proxy.model.js');
-	const MockUserModel = require('./models.helper.js').MockUser;
 	
-	ModelStrategy.dbModel = MockUserModel;
-	ModelStrategy.modelName = 'MockUser';
+	
+	// ModelStrategy.dbModel = MockUserModel;
+	// ModelStrategy.modelName = 'MockUser';
 
 	let mockUser1;
   let mockUser2;

@@ -3,18 +3,28 @@ const expect = require("chai").expect;
 const InstanceConstructor = require('../proxy.instance.js')
 
 describe('Instance Strategy', function() {
-	let MockUserModel = require('./models.helper.js').MockUser;
+	const MockUserModel = require('./helpers').MockUserModel;
 	let mockUser;
 	let InstanceStrategy; 
 	
+	before(function(done) {
+		if(mongoose.connection._readyState !== 1) {
+			mongoose.connection.open(done);
+		}
+		done()
+	})
+
 	beforeEach(function() {
 		mockUser = new MockUserModel({name: "Jane Doe", age: 25})
 		InstanceStrategy = new InstanceConstructor(mockUser);
 	})
 	
-	
-	afterEach(function() {
-		return MockUserModel.remove({}).exec();
+	// afterEach(function() {
+	// 	return Promise.resolve(MockUserModel.remove({}).exec())
+	// })
+
+	after(function(done) {
+		mongoose.connection.close(done);
 	})
 
 	it('has reference to Mongoose document instance', function() {

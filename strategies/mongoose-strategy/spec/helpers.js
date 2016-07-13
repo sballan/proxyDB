@@ -27,7 +27,14 @@ function close(done) {
   mongoose.disconnect(done);
 }
 
+const MockUserModel = mongoose
+.model('MockUserModel', new mongoose.Schema({
+  age: Number, 
+  name: String
+}))
+
 module.exports = {
 	open,
-	close
+	close,
+  MockUserModel
 }

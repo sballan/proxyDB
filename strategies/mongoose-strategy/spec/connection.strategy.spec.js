@@ -4,8 +4,10 @@ const mongoose = require('mongoose');
 
 describe('Connection Strategy', function() {
   const ConnectionConstructor = require('../proxy.connection');
-  const ProxyConnection = new ConnectionConstructor('mongodb://localhost:27017', 'proxyDb-mock')
-  ProxyConnection.dbConnection = mongoose.connection
+  // Needed to get reference to mongoose the other way
+  // ConnectionConstructor.prototype.dbManager = mongoose;
+
+  const ProxyConnection = new ConnectionConstructor('mongodb://localhost:27017', 'proxyDb-mockMock')
 
   before(function(done) {
     mongoose.disconnect(done)
@@ -16,15 +18,19 @@ describe('Connection Strategy', function() {
   });
 
   it('opens a connection to mongoose', function(done) {
-  console.log('Proxy Connection BEFORE', ProxyConnection.dbConnection)
+    expect(ProxyConnection.dbConnection._readyState).to.equal(0)
     ProxyConnection.open(function() {
-      console.log('Proxy Connection AFTER', ProxyConnection.dbConnection)
+      expect(ProxyConnection.dbConnection._readyState).to.equal(1)
       done()
     });
   });
 
-  xit('closes a connection to mongoose', function(done) {
-    ProxyConnection.close(done);
+  it('closes a connection to mongoose', function(done) {
+    expect(ProxyConnection.dbConnection._readyState).to.equal(1)
+    ProxyConnection.close(function() {
+      expect(ProxyConnection.dbConnection._readyState).to.equal(0)
+      done()
+    });
   })
 
 
