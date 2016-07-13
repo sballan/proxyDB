@@ -49,7 +49,7 @@ describe('Manager', function() {
     expect(manager).to.have.deep.property('_models.User');
   })
 
-  it('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
+  xit('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
     const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
 
