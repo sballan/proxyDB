@@ -23,6 +23,7 @@ describe('Manager', function() {
   
   it('strategy has a reference to its dbManager', function() {
     mongoose = manager.strategy.dbManager;
+    expect(mongoose).to.equal(manager.strategy.dbManager)
   })
   
   it('can open a connection to the db', function(done) {
@@ -49,24 +50,29 @@ describe('Manager', function() {
     return Promise.resolve({})
     .then(function() {
       return sam.save()
-    })       
+    })      
     .then(function(dbSam) {
-      console.log(sam.dbInstance._id)
-      return User.findById(sam.dbInstance._id)
+      return User.dbModel.findById(sam.dbInstance._id)
     })
     .then(function(dbSam) {
-      console.log("SAM 1", sam.dbInstance)
-      console.log("SAM 2", dbSam.dbInstance)
-      expect(dbSam.dbInstance.id).to.equal(sam.dbInstance.id)
-      return null;
-    })
-    .catch(function(err) {
+      console.log("What?")
+      expect(dbSam.id).to.equal(sam.dbInstance.id)
+      return Promise.resolve({})
+    },
+    function(err) {
+      console.log("ERROR")
       assert.fail(err)
+      console.log(err)
+      return Promise.resolve({})
     })
     
+  })
+
+  it('can work before this function?', function() {
+
   })
   
   
   
 
-});
+})
