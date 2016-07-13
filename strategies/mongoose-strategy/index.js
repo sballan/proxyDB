@@ -9,5 +9,7 @@ module.exports = {
 	model,
 	instance,
 	connection,
-	dbManager: mongoose
+	get dbManager(){
+		return require('mongoose');
+	}
 };

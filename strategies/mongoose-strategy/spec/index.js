@@ -1,11 +1,19 @@
 // Specific strategies have their test located locally.
-
-const Promise = require("bluebird");
+const chalk = require('chalk');
 const mongoose = require("mongoose");
-mongoose.Promise = Promise;
+mongoose.Promise = require("bluebird");;
 
-const connections = require('./connections.helper.js');
-const models = require('./models.helper.js');
+mongoose.connection.on('open', function (ref) {
+  chalk.green('Connected to mongo server.');
+});
+
+mongoose.connection.on('close', function (ref) {
+  chalk.blue('Closing connection to mongo server.');
+});
+mongoose.connection.on('error', function (err) {
+  chalk.bold.red('Could not connect to mongo server!');
+  chalk.red(err);
+});
 
 const tests = [
 	'connection.strategy',
@@ -15,13 +23,10 @@ const tests = [
 	
 	
 describe('Mongoose Strategy Suite', function() {
-	
-	before(connections.open)
+	// before(connections.open)
 	
 	tests.forEach(function(test) {
 		require(`./${test}.spec.js`);	
 	})
-	
-	after(connections.close)
 	
 })
