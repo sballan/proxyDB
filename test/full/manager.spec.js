@@ -51,6 +51,7 @@ describe('Manager', function() {
       return sam.save()
     })       
     .then(function(dbSam) {
+      console.log(sam.dbInstance._id)
       return User.findById(sam.dbInstance._id)
     })
     .then(function(dbSam) {
