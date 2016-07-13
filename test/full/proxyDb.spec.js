@@ -10,7 +10,7 @@ describe('ProxyDb', function() {
     
     expect(manager).to.have.property('ProxyDb', ProxyDb);
     expect(manager).to.have.property('strategy');
-    expect(manager).to.have.property('models');
+    expect(manager).to.have.property('_models');
   });
 
   it('can manually set the path of a Strategy during construction', function() {
@@ -19,7 +19,7 @@ describe('ProxyDb', function() {
 
     expect(manager).to.have.property('ProxyDb', ProxyDb);
     expect(manager).to.have.property('strategy');
-    expect(manager).to.have.property('models');
+    expect(manager).to.have.property('_models');
   });
 
   it('can register a new strategy without construction', function() {
@@ -27,6 +27,7 @@ describe('ProxyDb', function() {
     MockStrategy.model = class DbModel {};
     MockStrategy.dbModel = class MockDbModel {};
     ProxyDb.addStrategy('MockStrategy', MockStrategy);
+
 
     expect(ProxyDb).to.have.deep.property('strategies.MockStrategy', MockStrategy);
   });

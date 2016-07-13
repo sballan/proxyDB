@@ -1,21 +1,28 @@
 const mongoose = require('mongoose');
 const expect = require("chai").expect;
 const InstanceConstructor = require('../proxy.instance.js')
+const helpers = require('./helpers');
 
 describe('Instance Strategy', function() {
-	let MockUserModel = require('./models.helper.js').MockUser;
+	const MockUserModel = helpers.MockUserModel;
+	const DBURI = helpers.DBURI;
 	let mockUser;
 	let InstanceStrategy; 
 	
+
+	before(helpers.openConnection);
+
 	beforeEach(function() {
 		mockUser = new MockUserModel({name: "Jane Doe", age: 25})
 		InstanceStrategy = new InstanceConstructor(mockUser);
 	})
 	
-	
 	afterEach(function() {
 		return MockUserModel.remove({}).exec();
 	})
+
+	after(helpers.closeConnection);
+
 
 	it('has reference to Mongoose document instance', function() {
 		expect(mockUser.name).to.equal('Jane Doe');
@@ -23,7 +30,7 @@ describe('Instance Strategy', function() {
     expect(InstanceStrategy.dbInstance).to.equal(mockUser);
   });
 
-	it('can refresh its instance', function() {
+	it('can refresh its instance', function(done) {
 		expect(mockUser.age).to.equal(25);
 
 		return InstanceStrategy.dbInstance.set({age:30}).save() // must be saved before refresh
@@ -33,6 +40,7 @@ describe('Instance Strategy', function() {
 		.then(function(refreshedInstance) {
 			expect(InstanceStrategy.dbInstance.age)
 				.to.equal(30)
+				done()
 		})
     
   });

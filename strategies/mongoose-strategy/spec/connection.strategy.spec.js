@@ -2,20 +2,35 @@ const assert = require('chai').assert;
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
 
-xdescribe('Connection Strategy', function() {
+describe('Connection Strategy', function() {
   const ConnectionConstructor = require('../proxy.connection');
-  const ProxyConnection = new ConnectionConstructor('mongodb://localhost:27017', 'proxyDb-mock-manager')
+  // Needed to get reference to mongoose the other way
+  // ConnectionConstructor.prototype.dbManager = mongoose;
 
-  afterEach(function(done) {
+  const ProxyConnection = new ConnectionConstructor('mongodb://localhost:27017', 'proxyDb-mockMock')
+
+  before(function(done) {
+    mongoose.disconnect(done)
+  })
+  
+  after(function(done) {
     mongoose.disconnect(done);
   });
 
-  xit('opens a connection to mongoose', function() {
-    ProxyConnection.open();
+  it('opens a connection to mongoose', function(done) {
+    expect(ProxyConnection.dbConnection._readyState).to.equal(0)
+    ProxyConnection.open(function() {
+      expect(ProxyConnection.dbConnection._readyState).to.equal(1)
+      done()
+    });
   });
 
-  xit('closes a connection to mongoose', function(done) {
-    ProxyConnection.close(done);
+  it('closes a connection to mongoose', function(done) {
+    expect(ProxyConnection.dbConnection._readyState).to.equal(1)
+    ProxyConnection.close(function() {
+      expect(ProxyConnection.dbConnection._readyState).to.equal(0)
+      done()
+    });
   })
 
 
