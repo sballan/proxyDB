@@ -1,14 +1,16 @@
 const expect = require("chai").expect;
+const helpers = require('./helpers');
 
-xdescribe('Model Strategy', function() {
+describe('Model Strategy', function() {
 	const ModelStrategy = require('../proxy.model.js');
-	
-	
-	// ModelStrategy.dbModel = MockUserModel;
-	// ModelStrategy.modelName = 'MockUser';
+	const MockUserModel = require('./helpers').MockUserModel;
+	ModelStrategy.dbModel = MockUserModel;
+	ModelStrategy.modelName = 'MockUser';
 
 	let mockUser1;
   let mockUser2;
+
+	before(helpers.openConnection);
 
 	before(function() {
 		return MockUserModel.create([{name: "John Doe", age: 20}, {name: "Jane Doe", age: 20}])
@@ -21,6 +23,8 @@ xdescribe('Model Strategy', function() {
 	after(function() {
 		return MockUserModel.remove({}).exec();
 	});
+
+	after(helpers.closeConnection);
 	
 	it('can find a multiple instances with find', function() {
 		return ModelStrategy.find({age: 20})
