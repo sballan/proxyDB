@@ -1,4 +1,5 @@
 const InstanceTemplate = require('../../proxyDb/strategy-templates').instance;
+const Promise = require('bluebird');
 
 class ProxyInstance extends InstanceTemplate {
 	constructor(dbInstance) {
@@ -6,7 +7,7 @@ class ProxyInstance extends InstanceTemplate {
 	}
 	
 	save() {
-    return this.dbInstance.save()
+		return this.dbInstance.save()
 		.then(()=> {
 			return this;
 		})

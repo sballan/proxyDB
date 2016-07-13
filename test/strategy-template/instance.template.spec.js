@@ -10,9 +10,9 @@ const instance = new InstanceTemplate(dbInstance)
     assert.isObject(instance)
   });
   
-  it('hsa a reference to its dbInstance', function() {
+  it('has a reference to its dbInstance', function() {
     expect(instance).to.have.property('dbInstance', dbInstance)
   });
 
 
-});
+}); 

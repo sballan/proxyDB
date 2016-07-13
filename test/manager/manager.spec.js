@@ -33,7 +33,7 @@ describe('Manager', function() {
   it('can create and register new ProxyModels', function() {
     const MockUser = manager.model('MockUser', MockDbModel);
     
-    expect(manager).to.have.deep.property('models.MockUser', MockUser);
+    expect(manager).to.have.deep.property('_models.MockUser', MockUser);
     assert.isFunction(MockUser);
     expect(MockUser).to.have.property('dbModel', MockDbModel);
   });

@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const ModelTemplate = require('../../proxyDb/strategy-templates').model;
 const ProxyInstance = require('./proxy.instance.js');
 
