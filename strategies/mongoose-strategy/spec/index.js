@@ -1,8 +1,7 @@
 // Specific strategies have their test located locally.
 const chalk = require('chalk');
-const Promise = require("bluebird");
 const mongoose = require("mongoose");
-mongoose.Promise = Promise;
+mongoose.Promise = require("bluebird");;
 
 mongoose.connection.on('open', function (ref) {
   chalk.green('Connected to mongo server.');

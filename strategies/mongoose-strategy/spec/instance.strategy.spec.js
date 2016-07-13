@@ -4,14 +4,17 @@ const InstanceConstructor = require('../proxy.instance.js')
 
 describe('Instance Strategy', function() {
 	const MockUserModel = require('./helpers').MockUserModel;
+	const DBURI = require('./helpers').DBURI;
 	let mockUser;
 	let InstanceStrategy; 
 	
 	before(function(done) {
 		if(mongoose.connection._readyState !== 1) {
-			mongoose.connection.open(done);
-		}
-		done()
+			mongoose.connection.open(DBURI, done)
+		} 
+		else done()
+		
+		
 	})
 
 	beforeEach(function() {
@@ -19,9 +22,9 @@ describe('Instance Strategy', function() {
 		InstanceStrategy = new InstanceConstructor(mockUser);
 	})
 	
-	// afterEach(function() {
-	// 	return Promise.resolve(MockUserModel.remove({}).exec())
-	// })
+	afterEach(function() {
+		return MockUserModel.remove({}).exec();
+	})
 
 	after(function(done) {
 		mongoose.connection.close(done);
@@ -33,7 +36,7 @@ describe('Instance Strategy', function() {
     expect(InstanceStrategy.dbInstance).to.equal(mockUser);
   });
 
-	it('can refresh its instance', function() {
+	it('can refresh its instance', function(done) {
 		expect(mockUser.age).to.equal(25);
 
 		return InstanceStrategy.dbInstance.set({age:30}).save() // must be saved before refresh
@@ -43,6 +46,7 @@ describe('Instance Strategy', function() {
 		.then(function(refreshedInstance) {
 			expect(InstanceStrategy.dbInstance.age)
 				.to.equal(30)
+				done()
 		})
     
   });
