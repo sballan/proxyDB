@@ -3,7 +3,7 @@ const assert = require('chai').assert;
 
 const ProxyDb = require(rootPath+'/index');
 
-xdescribe('ProxyDb', function() {
+describe('ProxyDb', function() {
   it('is a constructor that can create Manager instances', function() {
     // Default strategy: mongoose.
     const manager = new ProxyDb('mongoose');

@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 const helpers = require('../helpers');
+const Promise = require('bluebird');
 
 const ProxyDb = require(rootPath+'/index');
 
@@ -9,6 +10,7 @@ describe('Manager', function() {
   let mongoose;
   let connection;
   
+
   it(`can be constructed using 'new ProxyDb()'`, function() {
     manager = new ProxyDb('mongoose');
     
@@ -28,35 +30,38 @@ describe('Manager', function() {
     
     connection.open(function() {
       expect(connection.dbConnection.name).to.equal('proxyDb-mock')
-      expect(connection.dbConnection._hasOpened).to.equal(true)
+      expect(connection.dbConnection._readyState).to.equal(1)
       //  console.log(connection.dbManager)
       done()
     })
   })
   
-  xit('can register existing dbModels', function() {
+  it('can register existing dbModels', function() {
     const User = mongoose.model('User', new mongoose.Schema(helpers.Schema))
     manager.model('User', User);
     expect(manager).to.have.deep.property('_models.User');
   })
-  
-  xit('ProxyModels can create new dbInstances which are also added to database', function(done) {
-    const sUser = manager.model('User');
-    const User = mongoose.model('User')
+
+  it('ProxyModels can create new dbInstances which are also added to database', function() {
+    const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
     
-    return sam.save()
+    return Promise.resolve({})
+    .then(function() {
+      return sam.save()
+    })       
     .then(function(dbSam) {
-      console.log("dbSam", dbSam.id)
-      console.log("USER", mongoose.model('User'))
-      return User.find({})
+      return User.findById(sam.dbInstance._id)
     })
     .then(function(dbSam) {
-      console.log(dbSam)
-      done()
-      return Promise.resolve()
+      console.log("SAM 1", sam.dbInstance)
+      console.log("SAM 2", dbSam.dbInstance)
+      expect(dbSam.dbInstance.id).to.equal(sam.dbInstance.id)
+      return null;
     })
-    .catch(done)
+    .catch(function(err) {
+      assert.fail(err)
+    })
     
   })
   
