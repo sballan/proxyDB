@@ -9,6 +9,7 @@ before_script:
   - echo 'mongod --bind_ip=$IP --dbpath=data --nojournal --rest "$@"' > mongod
   - chmod a+x mongod
   - ./mongod --nojournal --dbpath=data
+  - npm install mongoose
 
 env:
   - NODE_ENV=development
