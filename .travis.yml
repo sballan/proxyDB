@@ -13,3 +13,4 @@ before_script:
 
 env:
   - NODE_ENV=development
+  

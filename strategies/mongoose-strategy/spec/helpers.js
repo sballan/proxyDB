@@ -14,5 +14,7 @@ module.exports = {
       done()
     }
 	},
-  closeConnection: function(done) {mongoose.connection.close(done)}
+  closeConnection: function(done) {
+    mongoose.connection.close(done)
+  }
 }
