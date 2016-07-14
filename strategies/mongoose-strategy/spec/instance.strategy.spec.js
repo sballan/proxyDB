@@ -1,5 +1,8 @@
-const mongoose = require('mongoose');
 const expect = require("chai").expect;
+
+console.log("Mongoose-Strategy -Spec- Instance: About to require Mongoose");
+const mongoose = require("../index").dbManager;
+
 const InstanceConstructor = require('../proxy.instance.js')
 const helpers = require('./helpers');
 

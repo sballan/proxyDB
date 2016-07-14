@@ -1,6 +1,8 @@
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const mongoose = require('mongoose');
+
+console.log("Mongoose-Strategy -Spec- Connection: About to require Mongoose");
+const mongoose = require("../index").dbManager;
 
 describe('Connection Strategy', function() {
   const ConnectionConstructor = require('../proxy.connection');
