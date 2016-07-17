@@ -10,10 +10,13 @@ describe('Schema Strategy', function() {
 		expect(SchemaStrategy).to.have.deep.property('_schemas.User')
   });
 
-	it('can register an existing dbSchema', function() {
-		SchemaStrategy.register('User', dbSchema);
-		expect(SchemaStrategy).to.have.deep.property('_schemas.User')
+	it('creates a new dbSchema as part of a new pSchema', function() {
+		const pSchema = new SchemaStrategy('Book', {title: String});
+		console.log(pSchema.dbSchema)
+		expect(pSchema).to.have.property('dbSchema')
   });
+
+
 
 
 

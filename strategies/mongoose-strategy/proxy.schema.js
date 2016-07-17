@@ -3,14 +3,10 @@ const SchemaTemplate = require('../../proxyDb/strategy-templates').schema;
 
 class ProxySchema extends SchemaTemplate {
 	// creates dbSchema,   pSchema.
-	constructor(...args) {
-		super()
-		console.error(`Constructor is not implemented in this strategy.`);
-	}
-
-	static register(name, schema) {
-		//Accepts dbSchema, returns registered pSchema
-		 this._schemas[name] = schema;		
+	constructor(name, data) {
+		super(name, data)
+		this.dbSchema = new mongoose.Schema(name, data);
+		
 	}
 	
 	static registerAtPath() {

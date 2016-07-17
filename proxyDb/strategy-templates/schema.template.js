@@ -7,9 +7,9 @@ class ProxySchemaTemplate {
 		
 	}
 
-	static register() {
+	static register(name, dbSchema) {
 		//Accepts dbSchema, returns registered pSchema
-		throw new ReferenceError(`register is not implemented in this strategy.`);
+		 return this.proxify(name, dbSchema)		
 	}
 	
 	static registerAtPath() {
