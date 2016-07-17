@@ -1,7 +1,11 @@
-class ProxySchemaTemplate {
-	// creates dbSchema, returns pSchema.
+const mongoose = require("./index").dbManager;
+const SchemaTemplate = require('../../proxyDb/strategy-templates').schema;
+
+class ProxySchema extends SchemaTemplate {
+	// creates dbSchema,   pSchema.
 	constructor(...args) {
-		throw new ReferenceError(`Constructor is not implemented in this strategy.`);
+		super()
+		console.error(`Constructor is not implemented in this strategy.`);
 	}
 
 	static register(name, schema) {
@@ -17,16 +21,16 @@ class ProxySchemaTemplate {
 	static makeModels() {
 		//Registers dbModels and pModels for all registered pSchemas.
 		const models = {};
-		const mongoose = require("./index").dbManager;
-
+		
 		for(let schema in this._schemas) {
-			models[schema] = new mongoose.Schema(schema, this._schemas[schema]);
+			// models[schema] = this.proxify(this._schema[schema])
 		}
+
+		return models;
 		
 	}
 
+
 }
 
-ProxySchemaTemplate._schemas = {}
-
-module.exports = ProxySchemaTemplate
+module.exports = ProxySchema;

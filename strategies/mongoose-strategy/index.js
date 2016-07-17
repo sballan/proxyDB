@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const schema = require('./proxy.schema.js');
 const model = require('./proxy.model.js');
 const instance = require('./proxy.instance.js');
 const connection = require('./proxy.connection.js');
@@ -20,6 +21,7 @@ mongoose.connection.on('error', function (err) {
 });
 
 module.exports = {
+	schema,
 	model,
 	instance,
 	connection,

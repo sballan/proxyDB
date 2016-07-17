@@ -1,7 +1,10 @@
 class ProxySchemaTemplate {
 	// creates dbSchema, returns pSchema.
 	constructor(...args) {
-		throw new ReferenceError(`Constructor is not implemented in this strategy.`);
+		if(typeof args[0] === 'string') {
+			this.name = args[0];
+		}
+		
 	}
 
 	static register() {
@@ -19,6 +22,14 @@ class ProxySchemaTemplate {
 		throw new ReferenceError(`makeModels is not implemented in this strategy.`); 
 	}
 
+	static proxify(name, dbSchema) {
+	  const schema = new this(name, dbSchema);
+		this._schemas[name] = schema;
+		return schema;
+	}
+
 }
+
+ProxySchemaTemplate._schemas = {}
 
 module.exports = ProxySchemaTemplate
