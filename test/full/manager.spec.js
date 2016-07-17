@@ -3,7 +3,7 @@ const assert = require('chai').assert;
 const helpers = require('../helpers');
 const Promise = require('bluebird');
 
-const ProxyDb = require(rootPath+'/index');
+const ProxyDb = require('../../proxyDb/index');
 
 // FIXME I think the various instances of mongoose being used here aren't all the same...sounds crazy but the Promise behavior here is pretty crazy too
 
@@ -38,7 +38,6 @@ describe('Manager', function() {
     connection.open(function() {
       expect(connection.dbConnection.name).to.equal('proxyDb-mock')
       expect(connection.dbConnection._readyState).to.equal(1)
-      //  console.log(connection.dbManager)
       done()
     })
   })

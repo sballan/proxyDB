@@ -14,7 +14,7 @@ describe('Manager', function() {
   Strategy.dbManager = 'MockManager'
   MockModel.dbModel = MockDbModel;
 
-  const Manager = require(rootPath+'/manager/manager');
+  const Manager = require('../../proxyDb/manager/manager');
   const config = {ProxyDb:{strategies:{mockStrategy:Strategy}}}
 
   let manager;

@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  - "6"
-  - "6.1"
-  - "4.4.4"
-  - "5.0"
-  notifications:
+  - "4.4.7"
+services:
+- mongodb
+notifications:
   email: false
+before_script:
+  - npm install mongoose
+  - sleep 15
+
+env:
+  - NODE_ENV=development
+  

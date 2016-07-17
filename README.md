@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sballan/proxyDB.svg?branch=alpha)](https://travis-ci.org/sballan/proxyDB)
+
 ### Syntactic sugar for your favorite ODB/ORM
 
 - A JavaScript framework written in ES6, ready to work as an npm module
