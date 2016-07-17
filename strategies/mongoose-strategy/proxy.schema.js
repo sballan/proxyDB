@@ -4,21 +4,29 @@ class ProxySchemaTemplate {
 		throw new ReferenceError(`Constructor is not implemented in this strategy.`);
 	}
 
-	static register() {
+	static register(name, schema) {
 		//Accepts dbSchema, returns registered pSchema
-		throw new ReferenceError(`register is not implemented in this strategy.`);
+		 this._schemas[name] = schema;		
 	}
 	
 	static registerAtPath() {
 		//Accepts path, returns registered pSchema
-		throw new ReferenceError(`registerAtPath is not implemented in this strategy.`);
+		
 	}
 
 	static makeModels() {
 		//Registers dbModels and pModels for all registered pSchemas.
-		throw new ReferenceError(`makeModels is not implemented in this strategy.`); 
+		const models = {};
+		const mongoose = require("./index").dbManager;
+
+		for(let schema in this._schemas) {
+			models[schema] = new mongoose.Schema(schema, this._schemas[schema]);
+		}
+		
 	}
 
 }
+
+ProxySchemaTemplate._schemas = {}
 
 module.exports = ProxySchemaTemplate
