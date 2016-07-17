@@ -2,3 +2,5 @@
 node_modules
 .tern-project
 jsconfig.json
+.vscode
+.idea
