@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sballan/proxyDB.svg?branch=alpha)](https://travis-ci.org/sballan/proxyDB)
+[![Build Status](https://travis-ci.org/sballan/proxyDB.svg?branch=master)](https://travis-ci.org/sballan/proxyDB)
 
 ### Syntactic sugar for your favorite ODB/ORM
 
