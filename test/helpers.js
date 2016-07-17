@@ -1,5 +1,4 @@
 module.exports = {
-  db: require('mongoose'),
   Strategy: {
     model: {},
     connection: {},

@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
 const expect = require("chai").expect;
+const mongoose = require("../index").dbManager;
+
 const InstanceConstructor = require('../proxy.instance.js')
 const helpers = require('./helpers');
 

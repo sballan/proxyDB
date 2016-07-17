@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const assert = require('chai').assert;
 
-const ProxyDb = require(rootPath+'/index');
+const ProxyDb = require('../../index');
 
 describe('ProxyDb', function() {
   it('is a constructor that can create Manager instances', function() {

@@ -1,4 +1,5 @@
-const mongoose = require('mongoose');
+const mongoose = require("../index").dbManager;
+
 const DBURI = 'mongodb://localhost:27017/proxyDb-mock';
 
 module.exports = {
@@ -12,5 +13,7 @@ module.exports = {
       done()
     }
 	},
-  closeConnection: function(done) {mongoose.connection.close(done)}
+  closeConnection: function(done) {
+    mongoose.connection.close(done)
+  }
 }
