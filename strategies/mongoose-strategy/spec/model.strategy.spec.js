@@ -42,6 +42,22 @@ describe('Model Strategy', function() {
 			expect(pInstance.dbInstance.id).to.not.equal(mockUser2.id)
 		})
   });
+
+	it('can find a single instance with findById', function() {
+		return ModelStrategy.findById(mockUser1.id)
+		.then(function(pInstance) {
+			expect(pInstance.dbInstance.age).to.equal(20);
+			expect(pInstance.dbInstance.name).to.equal("John Doe");
+		})
+  });
+
+	it('can find a single instance with findByIdAndUpdate', function() {
+		return ModelStrategy.findByIdAndUpdate(mockUser1.id, {age: 54}, {new:true})
+		.then(function(pInstance) {
+			expect(pInstance.dbInstance.age).to.equal(54);
+			expect(pInstance.dbInstance.name).to.equal("John Doe");
+		})
+  });
 	
 	it('can create an instance with "new"', function() {
 		const mockUser3 = new ModelStrategy({name: 'Jim Smith', age: 25})

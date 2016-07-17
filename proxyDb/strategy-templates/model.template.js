@@ -9,16 +9,6 @@ class ProxyModelTemplate {
 	
 	static create() {
 		throw new ReferenceError(`create is not implemented in this strategy.`);
-		// const dbModel = this.prototype.constructor.dbModel;
-		// 
-		// if(!dbModel) {
-		// 	throw Error("Create cannot be called without modelName and dbModel defined")
-		// }
-		// 
-		// return dbModel.create(...args)
-		// .then(dbInstance=> {
-		// 	return this.proxify(dbInstance)
-		// })
 	}
 
 	static find() {
@@ -26,6 +16,22 @@ class ProxyModelTemplate {
 	}
 	
 	static findOne() {
+		throw new ReferenceError(`findOne is not implemented in this strategy.`);
+	}
+
+	static findById() {
+		throw new ReferenceError(`findOne is not implemented in this strategy.`);
+	}
+
+	static findOneAndUpdate() {
+		throw new ReferenceError(`findOne is not implemented in this strategy.`);
+	}
+
+	static findByIdAndUpdate() {
+		throw new ReferenceError(`findOne is not implemented in this strategy.`);
+	}
+
+	static findOneAndRemove() {
 		throw new ReferenceError(`findOne is not implemented in this strategy.`);
 	}
 	
