@@ -1,11 +1,11 @@
-const mongoose = require("./index").dbManager;
 const SchemaTemplate = require('../../proxyDb/strategy-templates').schema;
 
 class ProxySchema extends SchemaTemplate {
 	// creates dbSchema,   pSchema.
 	constructor(name, data) {
 		super(name, data)
-		this.dbSchema = new mongoose.Schema(name, data);
+		const mongoose = require("./index").dbManager;
+		this.dbSchema = new mongoose.Schema(data);
 		
 	}
 	

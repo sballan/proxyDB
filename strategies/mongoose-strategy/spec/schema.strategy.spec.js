@@ -3,14 +3,14 @@ const mongoose = require('../index').dbManager;
 
 describe('Schema Strategy', function() {
 	const SchemaStrategy = require('../proxy.schema.js');
-	const dbSchema = new mongoose.Schema({name: String})
+	const dbSchema = new mongoose.Schema({title: String});
 	
-	it('can register an existing dbSchema', function() {
+	xit('can register an existing dbSchema', function() {
 		SchemaStrategy.register('User', dbSchema);
 		expect(SchemaStrategy).to.have.deep.property('_schemas.User')
   });
 
-	it('creates a new dbSchema as part of a new pSchema', function() {
+	xit('creates a new dbSchema as part of a new pSchema', function() {
 		const pSchema = new SchemaStrategy('Book', {title: String});
 		console.log(pSchema.dbSchema)
 		expect(pSchema).to.have.property('dbSchema')

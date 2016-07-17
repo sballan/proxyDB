@@ -2,7 +2,7 @@ class ProxySchemaTemplate {
 	// creates dbSchema, returns pSchema.
 	constructor(...args) {
 		if(typeof args[0] === 'string') {
-			this.name = args[0];
+			this.schemaName = args[0];
 		}
 		
 	}
