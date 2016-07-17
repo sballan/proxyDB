@@ -3,7 +3,6 @@ const model = require('./proxy.model.js');
 const instance = require('./proxy.instance.js');
 const connection = require('./proxy.connection.js');
 
-console.log("Mongoose-Strategy Index: About to require Mongoose");
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
@@ -24,8 +23,7 @@ module.exports = {
 	model,
 	instance,
 	connection,
-	get dbManager(){
-		console.log("Mongoose-Strategy Manager dbManager: About to require Mongoose");
+	get dbManager(){		
 		return require('mongoose');
 	}
 };

@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - "6.1"
-  - "4.4.4"
+  - "6.2.2"
+  - "5.12.0"
+  - "4.4.7"
+services:
+- mongodb
 notifications:
   email: false
 before_script:
-  - mkdir data
-  - echo 'mongod --bind_ip=$IP --dbpath=data --nojournal --rest "$@"' > mongod
-  - chmod a+x mongod
-  - ./mongod --nojournal --dbpath=data
   - npm install mongoose
+  - sleep 15
 
 env:
   - NODE_ENV=development

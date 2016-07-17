@@ -38,7 +38,6 @@ describe('Manager', function() {
     connection.open(function() {
       expect(connection.dbConnection.name).to.equal('proxyDb-mock')
       expect(connection.dbConnection._readyState).to.equal(1)
-      //  console.log(connection.dbManager)
       done()
     })
   })

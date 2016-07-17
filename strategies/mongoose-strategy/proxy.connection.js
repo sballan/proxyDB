@@ -1,7 +1,5 @@
 const ConnectionTemplate = require('../../proxyDb/strategy-templates/').connection;
 // TODO get the reference to mongoose a different way
-console.log("Mongoose-Strategy ProxyConnection: About to require Mongoose");
-
 
 class ProxyConnection extends ConnectionTemplate {
   constructor(URI='mongodb://localhost:27017', dbName='proxyDb-test') {

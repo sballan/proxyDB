@@ -1,4 +1,3 @@
-console.log("Mongoose-Strategy -Spec- Helpers: About to require Mongoose");
 const mongoose = require("../index").dbManager;
 
 const DBURI = 'mongodb://localhost:27017/proxyDb-mock';
