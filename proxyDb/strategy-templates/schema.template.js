@@ -22,8 +22,8 @@ class ProxySchemaTemplate {
 		throw new ReferenceError(`makeModels is not implemented in this strategy.`); 
 	}
 
-	static proxify(name, dbSchema) {
-	  const schema = new this(name, dbSchema);
+	static proxify(name, dbSchema) {		
+	  const schema = new this(name, dbSchema);		
 		this._schemas[name] = schema;
 		return schema;
 	}

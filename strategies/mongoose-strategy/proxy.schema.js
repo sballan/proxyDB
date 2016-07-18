@@ -5,7 +5,12 @@ class ProxySchema extends SchemaTemplate {
 	constructor(name, data) {
 		super(name, data)
 		const mongoose = require("./index").dbManager;
-		this.dbSchema = new mongoose.Schema(data);
+
+		if(data instanceof mongoose.Schema === false) {
+			data = new mongoose.Schema(data);
+		} 
+		
+		this.dbSchema = data;	
 		
 	}
 	
@@ -14,12 +19,22 @@ class ProxySchema extends SchemaTemplate {
 		
 	}
 
-	static makeModels() {
+	static makeModel(name, schema) {
+		const mongoose = require("./index").dbManager;
+		if(schema instanceof mongoose.Schema === false ||
+			 schema instanceof ProxySchema === false) {
+			schema = new this(name, schema);
+		}
+
+		
+	}
+
+	static makeModel(schemas=this._schemas) {
 		//Registers dbModels and pModels for all registered pSchemas.
 		const models = {};
 		
 		for(let schema in this._schemas) {
-			// models[schema] = this.proxify(this._schema[schema])
+			
 		}
 
 		return models;
