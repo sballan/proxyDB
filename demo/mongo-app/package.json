@@ -8,7 +8,6 @@
     "start": "node index"
   },
   "dependencies": {
-    "babel": "^6.5.2",
     "express": "^4.14.0",
     "mongoose": "^4.5.4",
     "proxydb": "git://github.com/sballan/proxyDB.git",
