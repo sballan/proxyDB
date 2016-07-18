@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "build-proxyDb": "babel proxyDb --out-file dist/proxyDb.js",
-    "build-strategies": "babel strategies --out-dir dist/strategies",
+    "build-proxyDb": "babel proxyDb --out-dir dist/proxyDb --source-maps inline",
+    "build-strategies": "babel strategies --out-dir dist/strategies --source-maps inline",
     "build": "npm run build-proxyDb | npm run build-strategies"  
   },
   "repository": {
