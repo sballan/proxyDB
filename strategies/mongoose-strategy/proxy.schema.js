@@ -29,12 +29,10 @@ class ProxySchema extends SchemaTemplate {
 		
 	}
 
-	static makeModel(schemas=this._schemas) {
-		//Registers dbModels and pModels for all registered pSchemas.
-		const models = {};
-		
-		for(let schema in this._schemas) {
-			
+	static makeModels(schemas=this._schemas) {
+		const models = [];
+		for(let schema in schemas) {
+			models.push(this.makeModel(schema, schemas[schema]));
 		}
 
 		return models;
