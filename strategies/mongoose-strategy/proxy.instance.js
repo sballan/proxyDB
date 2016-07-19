@@ -7,10 +7,14 @@ class ProxyInstance extends InstanceTemplate {
 	}
 	
 	save() {
-		return this.dbInstance.save()
+		return Promise.resolve({})
+		.then(()=> {
+			return this.dbInstance.save()
+		})
 		.then(()=> {
 			return this;
 		})
+
 	}
 	
 	update(data) {

@@ -4,6 +4,7 @@ class ProxyModelTemplate {
 	// Example constructor
 	constructor(...args) {
 		const dbInstance = new this.constructor.dbModel(...args)
+		this.dbInstance = dbInstance;
 		return this.constructor.proxify(dbInstance)
 	}
 	

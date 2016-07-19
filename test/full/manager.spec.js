@@ -57,19 +57,19 @@ describe('Manager', function() {
     expect(cat).to.have.deep.property('dbInstance.color', 'black');
   })
 
-  xit('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
+  it('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
     const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
 
-    return sam.save()    
+    const promise = sam.save()
+    Promise.resolve(promise)    
     .then(function(dbSam) {
       return User.dbModel.findById(sam.dbInstance._id)
     })
     .then(function(dbSam) {
-      console.log("TEST IS PASSING:", dbSam.id===sam.dbInstance.id)
       expect(dbSam.id).to.equal(sam.dbInstance.id)
-    },
-    function(err) {
+    })
+    .catch(function(err) {
       assert.fail(err)
       console.log(err)
     })
