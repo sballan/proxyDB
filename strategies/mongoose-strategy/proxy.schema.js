@@ -10,9 +10,10 @@ class ProxySchema extends SchemaTemplate {
 		if(data instanceof mongoose.Schema === false){
 			if(data instanceof ProxySchema === false) {
 				data = new mongoose.Schema(data);
-			} 
-			// TODO this needs to be updated for ProxySchema Format
-			data = new mongoose.Schema(data);
+			} else {
+				// TODO this needs to be updated for ProxySchema Format
+				data = new mongoose.Schema(data);
+			}
 		}
 		
 		this.dbSchema = data;		
@@ -32,11 +33,10 @@ class ProxySchema extends SchemaTemplate {
 			// turns generic key/values into pSchema	 
 			schema = new this(modelName, schema);
 		}
-
-		const dbModel = new mongoose.model(modelName, schema.dbSchema);
+		
+		const dbModel = mongoose.model(modelName, schema.dbSchema);
 
 		class ProxyModel extends Model {}
-		
 		ProxyModel.modelName = modelName;
 		ProxyModel.dbModel = dbModel;
 		ProxyModel.constructor.dbModel = dbModel;
