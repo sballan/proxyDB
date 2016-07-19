@@ -5,7 +5,8 @@ class Manager {
   constructor(strategyName, config={}) {
     this.ProxyDb = config.ProxyDb;
     this._models = {};
-    this.connections = {};
+    this._connections = {};
+    this._schemas = {}
 
     this.strategy = this.ProxyDb.strategies[strategyName];
     // _.defaults(config, configFactory(this.strategy));
@@ -25,7 +26,7 @@ class Manager {
 
   connection(URI, dbName) {
     const connection = new this.Connection(URI, dbName);
-    this.connections[dbName] = connection;
+    this._connections[dbName] = connection;
     return connection;
   }
 

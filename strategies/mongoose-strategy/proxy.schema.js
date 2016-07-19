@@ -6,12 +6,16 @@ class ProxySchema extends SchemaTemplate {
 		super(name, data)
 		const mongoose = require("./index").dbManager;
 
-		if(data instanceof mongoose.Schema === false) {
+		
+		if(data instanceof mongoose.Schema === false){
+			if(data instanceof ProxySchema === false) {
+				data = new mongoose.Schema(data);
+			} 
+			// TODO this needs to be updated for ProxySchema Format
 			data = new mongoose.Schema(data);
-		} 
+		}
 		
-		this.dbSchema = data;	
-		
+		this.dbSchema = data;		
 	}
 	
 	static registerAtPath() {
@@ -19,15 +23,26 @@ class ProxySchema extends SchemaTemplate {
 		
 	}
 
-	static makeModel(name, schema) {
+	static makeModel(modelName, schema) {
 		const mongoose = require("./index").dbManager;
+		const Model = require("./index").model
+
 		if(schema instanceof mongoose.Schema === false ||
 			 schema instanceof ProxySchema === false) {
-			schema = new this(name, schema);
+			// turns generic key/values into pSchema	 
+			schema = new this(modelName, schema);
 		}
 
+		const dbModel = new mongoose.model(modelName, schema.dbSchema);
+
+		class ProxyModel extends Model {}
 		
-	}
+		ProxyModel.modelName = modelName;
+		ProxyModel.dbModel = dbModel;
+		ProxyModel.constructor.dbModel = dbModel;
+		return ProxyModel;
+  }
+
 
 	static makeModels(schemas=this._schemas) {
 		const models = [];

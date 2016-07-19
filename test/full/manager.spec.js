@@ -22,6 +22,7 @@ describe('Manager', function() {
     expect(manager).to.have.property('ProxyDb', ProxyDb);
     expect(manager).to.have.property('strategy');
     expect(manager).to.have.property('_models');
+    expect(manager).to.have.property('_connections');
     expect(manager).to.have.property('connection');
     expect(manager).to.have.property('model');
   });
@@ -36,7 +37,7 @@ describe('Manager', function() {
     connection = manager.connection('mongodb://localhost:27017', 'proxyDb-mock')
     
     connection.open(function() {
-      expect(connection.dbConnection.name).to.equal('proxyDb-mock')
+      expect(connection.dbName).to.equal('proxyDb-mock')
       expect(connection.dbConnection._readyState).to.equal(1)
       done()
     })

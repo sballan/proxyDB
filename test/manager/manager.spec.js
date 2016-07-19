@@ -41,7 +41,7 @@ describe('Manager', function() {
   it('can create and register new ProxyConnections', function() {
     const MockConnection = manager.connection('path/to/uri', 'mock-db');
     
-    expect(manager).to.have.deep.property('connections.mock-db')
+    expect(manager).to.have.deep.property('_connections.mock-db')
     
   });
 
