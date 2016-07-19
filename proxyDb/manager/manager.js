@@ -13,14 +13,14 @@ class Manager {
     this.config = configFactory(this.strategy)
   }
 
-  model(...args) {
-    const name = args[0];
-    const dbModel = args[1];
-    
-    if(args.length === 1) return this._models[name];
-    
-    const model = this.Model(name, dbModel);
-    this._models[name] = model;
+  model(modelName, data) {
+    if(!data) {
+      return this._models[modelName];
+    }
+
+		const model = this.Schema.makeModel(modelName, data);
+
+    this._models[modelName] = model;
     return model;
   }
 
@@ -40,6 +40,10 @@ class Manager {
 
   get Connection() {
     return this.config.Connection;
+  }
+
+  get Schema() {
+    return this.config.Schema;
   }
 
 

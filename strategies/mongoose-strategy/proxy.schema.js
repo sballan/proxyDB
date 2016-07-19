@@ -4,8 +4,7 @@ class ProxySchema extends SchemaTemplate {
 	// creates dbSchema,   pSchema.
 	constructor(name, data) {
 		super(name, data)
-		const mongoose = require("./index").dbManager;
-
+		const mongoose = require("./index").dbManager;		
 		
 		if(data instanceof mongoose.Schema === false){
 			if(data instanceof ProxySchema === false) {
@@ -30,19 +29,17 @@ class ProxySchema extends SchemaTemplate {
 
 		if(schema instanceof mongoose.Schema === false ||
 			 schema instanceof ProxySchema === false) {
-			// turns generic key/values into pSchema	 
-			schema = new this(modelName, schema);
-		}
+			// turns generic key/values into pSchema				 
+			schema = new this(modelName, schema);			
+		}		
 		
-		const dbModel = mongoose.model(modelName, schema.dbSchema);
-
+		const dbModel = mongoose.model(modelName, schema.dbSchema);		
 		class ProxyModel extends Model {}
 		ProxyModel.modelName = modelName;
 		ProxyModel.dbModel = dbModel;
-		ProxyModel.constructor.dbModel = dbModel;
+		ProxyModel.constructor.dbModel = dbModel;		
 		return ProxyModel;
   }
-
 
 	static makeModels(schemas=this._schemas) {
 		const models = [];
@@ -53,7 +50,6 @@ class ProxySchema extends SchemaTemplate {
 		return models;
 		
 	}
-
 
 }
 

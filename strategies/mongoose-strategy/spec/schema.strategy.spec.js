@@ -21,7 +21,6 @@ describe('Schema Strategy', function() {
 	it('can create a pModel and dbModel from a Schema', function() {
 		const House = SchemaStrategy.makeModel('House', {address: String});
 		const myHouse = new House({address: "123 Cherry Lane"});
-		console.log("MODEL", myHouse);
 		// expect(pSchema).to.have.property('dbSchema')
 		// expect(pSchema.dbSchema instanceof mongoose.Schema).to.be.true
   });

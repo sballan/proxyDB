@@ -43,8 +43,8 @@ describe('Manager', function() {
     })
   })
   
-  it('can register existing dbModels', function() {
-    const User = mongoose.model('User', new mongoose.Schema(helpers.Schema))
+  it('can register existing dbSchemas', function() {
+    const User = new mongoose.Schema(helpers.Schema);
     manager.model('User', User);
     expect(manager).to.have.deep.property('_models.User');
   })
