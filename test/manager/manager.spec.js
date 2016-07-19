@@ -3,16 +3,20 @@ const expect = require('chai').expect;
 
 describe('Manager', function() {
   class Strategy {}
-  class MockDbModel {
-    constructor(dbInstance){return dbInstance} 
-  }
-  class MockModel { 
-    constructor(dbInstance){return{dbInstance}}
-  }
+  class MockDbModel { constructor(i){return i} }
+
   Strategy.model = class ModelStrategy {}
+  Strategy.schema = class SchemaStrategy{
+    static makeModel(mockName, mockData){
+      class MockModel extends mockData {}
+      MockModel.modelName = mockName;
+      MockModel.dbModel = MockDbModel;
+      MockModel.constructor.dbModel = new MockDbModel();
+      return MockModel;	
+    }
+  }
   Strategy.connection = class Connection {}
   Strategy.dbManager = 'MockManager'
-  MockModel.dbModel = MockDbModel;
 
   const Manager = require('../../proxyDb/manager/manager');
   const config = {ProxyDb:{strategies:{mockStrategy:Strategy}}}

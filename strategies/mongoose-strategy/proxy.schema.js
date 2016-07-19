@@ -41,7 +41,7 @@ class ProxySchema extends SchemaTemplate {
 		return ProxyModel;
   }
 
-	static makeModels(schemas=this._schemas) {
+	static makeModels(schemas) {
 		const models = [];
 		for(let schema in schemas) {
 			models.push(this.makeModel(schema, schemas[schema]));

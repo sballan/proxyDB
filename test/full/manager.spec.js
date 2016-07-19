@@ -49,6 +49,14 @@ describe('Manager', function() {
     expect(manager).to.have.deep.property('_models.User');
   })
 
+  it('can create new dbSchemas automatically while making new models', function() {
+    const Animal = manager.model('Animal', {name: String, color: String});
+    const cat = new Animal({name: 'cat', color:'black'});
+    expect(manager).to.have.deep.property('_models.Animal');
+    expect(cat).to.have.deep.property('dbInstance.name', 'cat');
+    expect(cat).to.have.deep.property('dbInstance.color', 'black');
+  })
+
   xit('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
     const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
