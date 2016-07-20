@@ -57,7 +57,7 @@ describe('Manager', function() {
     expect(cat).to.have.deep.property('dbInstance.color', 'black');
   })
 
-  it('ProxyModels can create new dbInstances which are also added to database\nThis test is actually passing...', function() {
+  it('ProxyModels can create new dbInstances which are also added to database', function() {
     const User = manager.model('User');
     const sam = new User({age: 25, name: 'Sam'});
 
