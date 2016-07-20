@@ -1,4 +1,5 @@
 const expect = require("chai").expect;
+const assert = require("chai").assert;
 const helpers = require('./helpers');
 
 describe('Model Strategy', function() {
@@ -29,8 +30,9 @@ describe('Model Strategy', function() {
 	it('can find a multiple instances with find', function() {
 		return ModelStrategy.find({age: 20})
 		.then(function(pInstances) {
-			expect(pInstances[0].dbInstance.name).to.equal('John Doe');
-			expect(pInstances[1].dbInstance.name).to.equal('Jane Doe');
+			const names = pInstances.map(pi=> pi.dbInstance.name)
+			assert.isTrue(names.indexOf('John Doe') >=0)
+			assert.isTrue(names.indexOf('Jane Doe') >=0)
 		})
   });
 
