@@ -1,0 +1,11 @@
+'use strict';
+
+var strategies = {
+	mongoose: require('./mongoose-strategy')
+};
+
+module.exports = function (strategyName) {
+	if (!strategyName) return strategies;
+	return require('./' + strategyName + '-strategy');
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3N0cmF0ZWdpZXMvaW5kZXguanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFNLGFBQWE7QUFDbEIsV0FBVSxRQUFRLHFCQUFSO0FBRFEsQ0FBbkI7O0FBSUEsT0FBTyxPQUFQLEdBQWlCLFVBQUMsWUFBRCxFQUFpQjtBQUNqQyxLQUFHLENBQUMsWUFBSixFQUFrQixPQUFPLFVBQVA7QUFDbEIsUUFBTyxlQUFhLFlBQWIsZUFBUDtBQUNBLENBSEQiLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJjb25zdCBzdHJhdGVnaWVzID0ge1xuXHRtb25nb29zZTogcmVxdWlyZSgnLi9tb25nb29zZS1zdHJhdGVneScpXG59O1xuXG5tb2R1bGUuZXhwb3J0cyA9IChzdHJhdGVneU5hbWUpPT4ge1xuXHRpZighc3RyYXRlZ3lOYW1lKSByZXR1cm4gc3RyYXRlZ2llcztcblx0cmV0dXJuIHJlcXVpcmUoYC4vJHtzdHJhdGVneU5hbWV9LXN0cmF0ZWd5YCk7XG59O1xuXG4iXX0=

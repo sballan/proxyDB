@@ -5,27 +5,28 @@ class Manager {
   constructor(strategyName, config={}) {
     this.ProxyDb = config.ProxyDb;
     this._models = {};
-    this.connections = {};
+    this._connections = {};
+    this._schemas = {}
 
     this.strategy = this.ProxyDb.strategies[strategyName];
     // _.defaults(config, configFactory(this.strategy));
     this.config = configFactory(this.strategy)
   }
 
-  model(...args) {
-    const name = args[0];
-    const dbModel = args[1];
-    
-    if(args.length === 1) return this._models[name];
-    
-    const model = this.Model(name, dbModel);
-    this._models[name] = model;
+  model(modelName, data) {
+    if(!data) {
+      return this._models[modelName];
+    }
+
+		const model = this.Schema.makeModel(modelName, data);
+
+    this._models[modelName] = model;
     return model;
   }
 
   connection(URI, dbName) {
     const connection = new this.Connection(URI, dbName);
-    this.connections[dbName] = connection;
+    this._connections[dbName] = connection;
     return connection;
   }
 
@@ -39,6 +40,10 @@ class Manager {
 
   get Connection() {
     return this.config.Connection;
+  }
+
+  get Schema() {
+    return this.config.Schema;
   }
 
 
