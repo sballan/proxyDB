@@ -6,7 +6,8 @@ const mongoose = require("../index").dbManager;
 const tests = [
 	'connection.strategy',
 	'model.strategy', 
-	'instance.strategy'
+	'instance.strategy',
+	'schema.strategy'
 ]
 	
 describe('Mongoose Strategy Suite', function() {

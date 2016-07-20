@@ -1,0 +1,28 @@
+'use strict';
+
+var ConnectionTemplate = require('./connection.template.js');
+var ModelTemplate = require('./model.template.js');
+var InstanceTemplate = require('./instance.template.js');
+var SchemaTemplate = require('./schema.template.js');
+
+module.exports = {
+	connection: ConnectionTemplate,
+	schema: SchemaTemplate,
+	model: ModelTemplate,
+	instance: InstanceTemplate,
+	dbManager: 'REPLACE WITH ORM/ODM'
+};
+
+// module.exports = {
+// 	schema: ()=> {
+// 		return SchemaTemplate;
+// 	},
+// 	model: (dbModel)=> {
+// 		ModelTemplate.dbModel = dbModel;
+// 		return ModelTemplate;
+// 	},
+// 	instance: ()=> {
+// 		return InstanceTemplate;
+// 	}
+// }
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb3h5RGIvc3RyYXRlZ3ktdGVtcGxhdGVzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsSUFBTSxxQkFBcUIsUUFBUSwwQkFBUixDQUEzQjtBQUNBLElBQU0sZ0JBQWdCLFFBQVEscUJBQVIsQ0FBdEI7QUFDQSxJQUFNLG1CQUFtQixRQUFRLHdCQUFSLENBQXpCO0FBQ0EsSUFBTSxpQkFBaUIsUUFBUSxzQkFBUixDQUF2Qjs7QUFFQSxPQUFPLE9BQVAsR0FBaUI7QUFDaEIsYUFBWSxrQkFESTtBQUVoQixTQUFRLGNBRlE7QUFHaEIsUUFBTyxhQUhTO0FBSWhCLFdBQVUsZ0JBSk07QUFLaEIsWUFBVztBQUxLLENBQWpCOztBQVNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImNvbnN0IENvbm5lY3Rpb25UZW1wbGF0ZSA9IHJlcXVpcmUoJy4vY29ubmVjdGlvbi50ZW1wbGF0ZS5qcycpXG5jb25zdCBNb2RlbFRlbXBsYXRlID0gcmVxdWlyZSgnLi9tb2RlbC50ZW1wbGF0ZS5qcycpXG5jb25zdCBJbnN0YW5jZVRlbXBsYXRlID0gcmVxdWlyZSgnLi9pbnN0YW5jZS50ZW1wbGF0ZS5qcycpXG5jb25zdCBTY2hlbWFUZW1wbGF0ZSA9IHJlcXVpcmUoJy4vc2NoZW1hLnRlbXBsYXRlLmpzJylcblxubW9kdWxlLmV4cG9ydHMgPSB7XG5cdGNvbm5lY3Rpb246IENvbm5lY3Rpb25UZW1wbGF0ZSxcblx0c2NoZW1hOiBTY2hlbWFUZW1wbGF0ZSxcblx0bW9kZWw6IE1vZGVsVGVtcGxhdGUsXG5cdGluc3RhbmNlOiBJbnN0YW5jZVRlbXBsYXRlLFxuXHRkYk1hbmFnZXI6ICdSRVBMQUNFIFdJVEggT1JNL09ETSdcbn1cblxuXG4vLyBtb2R1bGUuZXhwb3J0cyA9IHtcbi8vIFx0c2NoZW1hOiAoKT0+IHtcbi8vIFx0XHRyZXR1cm4gU2NoZW1hVGVtcGxhdGU7XG4vLyBcdH0sXG4vLyBcdG1vZGVsOiAoZGJNb2RlbCk9PiB7XG4vLyBcdFx0TW9kZWxUZW1wbGF0ZS5kYk1vZGVsID0gZGJNb2RlbDtcbi8vIFx0XHRyZXR1cm4gTW9kZWxUZW1wbGF0ZTtcbi8vIFx0fSxcbi8vIFx0aW5zdGFuY2U6ICgpPT4ge1xuLy8gXHRcdHJldHVybiBJbnN0YW5jZVRlbXBsYXRlO1xuLy8gXHR9XG4vLyB9XG5cdFxuIl19
