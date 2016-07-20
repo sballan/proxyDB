@@ -4,21 +4,13 @@ class ProxyModelTemplate {
 	// Example constructor
 	constructor(...args) {
 		const dbInstance = new this.constructor.dbModel(...args)
+		this.dbInstance = dbInstance;
 		return this.constructor.proxify(dbInstance)
 	}
 	
 	static create() {
 		throw new ReferenceError(`create is not implemented in this strategy.`);
-		// const dbModel = this.prototype.constructor.dbModel;
-		// 
-		// if(!dbModel) {
-		// 	throw Error("Create cannot be called without modelName and dbModel defined")
-		// }
-		// 
-		// return dbModel.create(...args)
-		// .then(dbInstance=> {
-		// 	return this.proxify(dbInstance)
-		// })
+
 	}
 
 	static find() {

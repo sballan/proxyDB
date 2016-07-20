@@ -1,7 +1,8 @@
 const chalk = require('chalk');
-const model = require('./proxy.model.js');
-const instance = require('./proxy.instance.js');
-const connection = require('./proxy.connection.js');
+const schema = require('./proxy.schema');
+const model = require('./proxy.model');
+const instance = require('./proxy.instance');
+const connection = require('./proxy.connection');
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -20,6 +21,7 @@ mongoose.connection.on('error', function (err) {
 });
 
 module.exports = {
+	schema,
 	model,
 	instance,
 	connection,
