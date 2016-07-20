@@ -1,11 +1,13 @@
 'use strict';
-const path = require('path');
-const util = require('util');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const express = require('express');
-const chalk = require('chalk');
-const app = express();
+var path = require('path');
+var util = require('util');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var express = require('express');
+var chalk = require('chalk');
+var db = require('proxydb');
+console.log('DB', db);
+var app = express();
 
 module.exports = app;
 
@@ -28,22 +30,23 @@ app.get('/', function(req, res, next) {
 });
 
 app.use(function (req, res, next) {
-
 	if (path.extname(req.path).length > 0) {
 		res.status(404).end();
 	} else {
 		next(null);
 	}
-
 });
 
 app.get('/users', function(req, res, next) {
-	var db = require('./db');
-	console.log(db)
+	console.log(chalk.blue('Hit Users route'));
 	var User = db.model('User');
 	User.find({})
 	.then(function(users) {
 		res.send(users)
+	})
+	.catch(function(err) {
+		console.log(chalk.red(err))
+		next(err)
 	})
 });
 
