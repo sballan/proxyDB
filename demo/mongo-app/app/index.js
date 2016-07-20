@@ -1,16 +1,16 @@
 'use strict';
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const startDb = require('./db');
-const server = require('http').createServer();
+var startDb = require('./db');
+var server = require('http').createServer();
 
-const createApplication = function () {
-  const app = require('./app');
+var createApplication = function () {
+  var app = require('./app');
   server.on('request', app);
 };
 
-const startServer = function () {
-  const PORT = 8080;
+var startServer = function () {
+  var PORT = 8080;
   server.listen(PORT);
 };
 
