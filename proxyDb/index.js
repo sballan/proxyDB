@@ -4,7 +4,6 @@ const DEFAULT_STRATEGY = 'mongoose';
 
 class ProxyDb {
 	constructor(strategyName, config={}) {
-		this.managers = [];
 
 		if(typeof config === 'string') config = {strategyPath: config};
 
@@ -25,7 +24,7 @@ class ProxyDb {
 		}
 
 		const manager = new Manager(strategyName, config);
-		this.managers.push(manager);
+		ProxyDb.managers.push(manager);
 		return manager;
 	}
 
@@ -43,13 +42,17 @@ class ProxyDb {
 	}
 	
 	static get connections() {
-		return ProxyDb.managers.map(manager=> {
+		return this.managers.map(manager=> {
 			return manager.connections
 		})
 		
 	}
-}
 
+	static get db() {
+		return this.managers[0]
+	}
+}
+ProxyDb.managers = [];
 ProxyDb.strategies = {};
 
 
