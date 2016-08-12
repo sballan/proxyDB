@@ -26,6 +26,6 @@ module.exports = {
 	instance,
 	connection,
 	get dbManager() {
-		return require('mongoose');
+		return mongoose;
 	}
 };
