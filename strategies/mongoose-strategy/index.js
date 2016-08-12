@@ -1,11 +1,12 @@
-const chalk = require('chalk');
-const schema = require('./proxy.schema');
-const model = require('./proxy.model');
-const instance = require('./proxy.instance');
-const connection = require('./proxy.connection');
+import chalk from 'chalk';
+import mongoose from 'mongoose';
+import bluebird from 'bluebird';
+import schema from './proxy.schema';
+import model from './proxy.model';
+import instance from './proxy.instance';
+import connection from './proxy.connection'
 
-const mongoose = require('mongoose');
-mongoose.Promise = require('bluebird');
+mongoose.Promise = bluebird;
 
 
 mongoose.connection.on('open', function (ref) {
@@ -19,6 +20,16 @@ mongoose.connection.on('error', function (err) {
 	console.log(chalk.bold.red('Could not connect to mongo server!'));
 	console.log(chalk.red(err));
 });
+
+// export default {
+// 	schema,
+// 	model,
+// 	instance,
+// 	connection,
+// 	get dbManager() {
+// 		return mongoose;
+// 	}
+// }
 
 module.exports = {
 	schema,
