@@ -9,15 +9,15 @@ mongoose.Promise = require('bluebird');
 
 
 mongoose.connection.on('open', function (ref) {
-  chalk.green('Connected to mongo server.', ref);
+	console.log(chalk.green('Connected to mongo server!', ref));
 });
 
 mongoose.connection.on('close', function (ref) {
-  chalk.blue('Closing connection to mongo server.', ref);
+	console.log(chalk.blue('Closing connection to mongo server!', ref));
 });
 mongoose.connection.on('error', function (err) {
-  chalk.bold.red('Could not connect to mongo server!');
-  chalk.red(err);
+	console.log(chalk.bold.red('Could not connect to mongo server!'));
+	console.log(chalk.red(err));
 });
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
 	model,
 	instance,
 	connection,
-	get dbManager(){		
-		return require('mongoose');
+	get dbManager() {
+		return mongoose;
 	}
 };
