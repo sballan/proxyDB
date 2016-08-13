@@ -31,6 +31,8 @@ export default {
 	}
 }
 
+// TODO remove the module.exports
+
 module.exports = {
 	schema,
 	model,

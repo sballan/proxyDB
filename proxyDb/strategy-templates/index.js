@@ -1,7 +1,7 @@
-const ConnectionTemplate = require('./connection.template.js')
-const ModelTemplate = require('./model.template.js')
-const InstanceTemplate = require('./instance.template.js')
-const SchemaTemplate = require('./schema.template.js')
+import ConnectionTemplate from './connection.template';
+import ModelTemplate from './model.template';
+import InstanceTemplate from './instance.template';
+import SchemaTemplate from './schema.template';
 
 module.exports = {
 	connection: ConnectionTemplate,
@@ -10,6 +10,8 @@ module.exports = {
 	instance: InstanceTemplate,
 	dbManager: 'REPLACE WITH ORM/ODM'
 }
+
+export default module.exports;
 
 
 // module.exports = {
@@ -24,4 +26,3 @@ module.exports = {
 // 		return InstanceTemplate;
 // 	}
 // }
-	
