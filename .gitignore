@@ -5,5 +5,5 @@ jsconfig.json
 .vscode
 .idea
 demo/mongo-app/node_modules
-
+typings
 

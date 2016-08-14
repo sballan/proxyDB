@@ -8,30 +8,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 module.exports = function ModelFactory(strategy) {
 
-  /**
-   * Makes ProxyModels using the Strategy with the class was constructed
-   * @method modelFactory
-   * @param  {String}     modelName Name of the ModelStrategy
-   * @param  {dbModel}    dbModel   A model from the database.
-   * @return {ProxyModel}           A Proxified version of this model.
-   */
-  return function modelFactory(modelName, dbModel) {
-    var ProxyModel = function (_strategy$model) {
-      _inherits(ProxyModel, _strategy$model);
+	/**
+  * Makes ProxyModels using the Strategy with the class was constructed
+  * @method modelFactory
+  * @param  {String}     modelName Name of the ModelStrategy
+  * @param  {dbModel}    dbModel   A model from the database.
+  * @return {ProxyModel}           A Proxified version of this model.
+  */
+	return function modelFactory(modelName, dbModel) {
+		var ProxyModel = function (_strategy$model) {
+			_inherits(ProxyModel, _strategy$model);
 
-      function ProxyModel() {
-        _classCallCheck(this, ProxyModel);
+			function ProxyModel() {
+				_classCallCheck(this, ProxyModel);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(ProxyModel).apply(this, arguments));
-      }
+				return _possibleConstructorReturn(this, Object.getPrototypeOf(ProxyModel).apply(this, arguments));
+			}
 
-      return ProxyModel;
-    }(strategy.model);
+			return ProxyModel;
+		}(strategy.model);
 
-    ProxyModel.modelName = modelName;
-    ProxyModel.dbModel = dbModel;
-    ProxyModel.constructor.dbModel = dbModel;
-    return ProxyModel;
-  };
+		ProxyModel.modelName = modelName;
+		ProxyModel.dbModel = dbModel;
+		ProxyModel.constructor.dbModel = dbModel;
+		return ProxyModel;
+	};
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb3h5RGIvbWFuYWdlci9tb2RlbC5mYWN0b3J5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsT0FBTyxPQUFQLEdBQWlCLFNBQVMsWUFBVCxDQUFzQixRQUF0QixFQUFnQzs7QUFFN0M7Ozs7Ozs7QUFPQSxTQUFPLFNBQVMsWUFBVCxDQUFzQixTQUF0QixFQUFpQyxPQUFqQyxFQUEwQztBQUFBLFFBQ3pDLFVBRHlDO0FBQUE7O0FBQUE7QUFBQTs7QUFBQTtBQUFBOztBQUFBO0FBQUEsTUFDdEIsU0FBUyxLQURhOztBQUcvQyxlQUFXLFNBQVgsR0FBdUIsU0FBdkI7QUFDQSxlQUFXLE9BQVgsR0FBcUIsT0FBckI7QUFDQSxlQUFXLFdBQVgsQ0FBdUIsT0FBdkIsR0FBaUMsT0FBakM7QUFDQSxXQUFPLFVBQVA7QUFDRCxHQVBEO0FBU0gsQ0FsQkQiLCJmaWxlIjoibW9kZWwuZmFjdG9yeS5qcyIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gTW9kZWxGYWN0b3J5KHN0cmF0ZWd5KSB7XG4gICAgXG4gICAgLyoqXG4gICAgICogTWFrZXMgUHJveHlNb2RlbHMgdXNpbmcgdGhlIFN0cmF0ZWd5IHdpdGggdGhlIGNsYXNzIHdhcyBjb25zdHJ1Y3RlZFxuICAgICAqIEBtZXRob2QgbW9kZWxGYWN0b3J5XG4gICAgICogQHBhcmFtICB7U3RyaW5nfSAgICAgbW9kZWxOYW1lIE5hbWUgb2YgdGhlIE1vZGVsU3RyYXRlZ3lcbiAgICAgKiBAcGFyYW0gIHtkYk1vZGVsfSAgICBkYk1vZGVsICAgQSBtb2RlbCBmcm9tIHRoZSBkYXRhYmFzZS5cbiAgICAgKiBAcmV0dXJuIHtQcm94eU1vZGVsfSAgICAgICAgICAgQSBQcm94aWZpZWQgdmVyc2lvbiBvZiB0aGlzIG1vZGVsLlxuICAgICAqL1xuICAgIHJldHVybiBmdW5jdGlvbiBtb2RlbEZhY3RvcnkobW9kZWxOYW1lLCBkYk1vZGVsKSB7XG4gICAgICBjbGFzcyBQcm94eU1vZGVsIGV4dGVuZHMgc3RyYXRlZ3kubW9kZWwge31cbiAgICAgIFxuICAgICAgUHJveHlNb2RlbC5tb2RlbE5hbWUgPSBtb2RlbE5hbWU7XG4gICAgICBQcm94eU1vZGVsLmRiTW9kZWwgPSBkYk1vZGVsO1xuICAgICAgUHJveHlNb2RlbC5jb25zdHJ1Y3Rvci5kYk1vZGVsID0gZGJNb2RlbDtcbiAgICAgIHJldHVybiBQcm94eU1vZGVsO1xuICAgIH1cblxufVxuXG5cblxuXG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb3h5RGIvbWFuYWdlci9tb2RlbC5mYWN0b3J5LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsT0FBTyxPQUFQLEdBQWlCLFNBQVMsWUFBVCxDQUFzQixRQUF0QixFQUFnQzs7QUFFaEQ7Ozs7Ozs7QUFPQSxRQUFPLFNBQVMsWUFBVCxDQUFzQixTQUF0QixFQUFpQyxPQUFqQyxFQUEwQztBQUFBLE1BQzFDLFVBRDBDO0FBQUE7O0FBQUE7QUFBQTs7QUFBQTtBQUFBOztBQUFBO0FBQUEsSUFDdkIsU0FBUyxLQURjOztBQUdoRCxhQUFXLFNBQVgsR0FBdUIsU0FBdkI7QUFDQSxhQUFXLE9BQVgsR0FBcUIsT0FBckI7QUFDQSxhQUFXLFdBQVgsQ0FBdUIsT0FBdkIsR0FBaUMsT0FBakM7QUFDQSxTQUFPLFVBQVA7QUFDQSxFQVBEO0FBU0EsQ0FsQkQiLCJmaWxlIjoibW9kZWwuZmFjdG9yeS5qcyIsInNvdXJjZXNDb250ZW50IjpbIm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gTW9kZWxGYWN0b3J5KHN0cmF0ZWd5KSB7XG5cblx0LyoqXG5cdCAqIE1ha2VzIFByb3h5TW9kZWxzIHVzaW5nIHRoZSBTdHJhdGVneSB3aXRoIHRoZSBjbGFzcyB3YXMgY29uc3RydWN0ZWRcblx0ICogQG1ldGhvZCBtb2RlbEZhY3Rvcnlcblx0ICogQHBhcmFtICB7U3RyaW5nfSAgICAgbW9kZWxOYW1lIE5hbWUgb2YgdGhlIE1vZGVsU3RyYXRlZ3lcblx0ICogQHBhcmFtICB7ZGJNb2RlbH0gICAgZGJNb2RlbCAgIEEgbW9kZWwgZnJvbSB0aGUgZGF0YWJhc2UuXG5cdCAqIEByZXR1cm4ge1Byb3h5TW9kZWx9ICAgICAgICAgICBBIFByb3hpZmllZCB2ZXJzaW9uIG9mIHRoaXMgbW9kZWwuXG5cdCAqL1xuXHRyZXR1cm4gZnVuY3Rpb24gbW9kZWxGYWN0b3J5KG1vZGVsTmFtZSwgZGJNb2RlbCkge1xuXHRcdGNsYXNzIFByb3h5TW9kZWwgZXh0ZW5kcyBzdHJhdGVneS5tb2RlbCB7fVxuXG5cdFx0UHJveHlNb2RlbC5tb2RlbE5hbWUgPSBtb2RlbE5hbWU7XG5cdFx0UHJveHlNb2RlbC5kYk1vZGVsID0gZGJNb2RlbDtcblx0XHRQcm94eU1vZGVsLmNvbnN0cnVjdG9yLmRiTW9kZWwgPSBkYk1vZGVsO1xuXHRcdHJldHVybiBQcm94eU1vZGVsO1xuXHR9XG5cbn0iXX0=

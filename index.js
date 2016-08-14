@@ -1,1 +1,1 @@
-module.exports = require('./proxyDb');
+module.exports = require('./dist');
