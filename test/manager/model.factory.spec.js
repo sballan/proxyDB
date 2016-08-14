@@ -1,6 +1,6 @@
 import { assert, expect } from 'chai'
 
-const ModelFactory = require('../../proxyDb/manager/model.factory.js');
+import ModelFactory from '../../proxyDb/manager/model.factory.js';
 
 describe('Model Factory', function () {
 

@@ -1,7 +1,6 @@
-const configFactory = require('./config.factory');
+import configFactory from './config.factory';
 
-
-class Manager {
+export default class Manager {
 	constructor(strategyName, config = {}) {
 		this.ProxyDb = config.ProxyDb;
 		this._models = {};
@@ -48,7 +47,5 @@ class Manager {
 
 
 }
-
-export default Manager;
 
 module.exports = Manager;

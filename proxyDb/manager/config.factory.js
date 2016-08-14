@@ -1,7 +1,6 @@
-const modelFactory = require('./model.factory');
-const connectionFactory = require('./connection.factory');
-const schemaFactory = require('./schema.factory');
-
+import modelFactory from './model.factory';
+import connectionFactory from './connection.factory';
+import schemaFactory from './schema.factory';
 
 export default configFactory;
 

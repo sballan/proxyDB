@@ -1,5 +1,5 @@
 import { expect, assert } from 'chai';
-const InstanceTemplate = require('../../proxyDb/strategy-templates').instance;
+import { instance as InstanceTemplate } from '../../proxyDb/strategy-templates';
 
 describe('Instance Template', function () {
 	const dbInstance = { mock: 'data' }

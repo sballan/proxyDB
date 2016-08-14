@@ -1,7 +1,8 @@
 import Promise from 'bluebird';
 import { expect } from 'chai';
+import { model as OrigProxyTemplate } from '../../proxyDb/strategy-templates'
 
-class ModelTemplate extends require('../../proxyDb/strategy-templates').model {};
+class ModelTemplate extends OrigProxyTemplate {}
 
 const MockModel = class MyModel {
 	constructor(data) {

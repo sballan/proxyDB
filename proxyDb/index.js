@@ -1,11 +1,11 @@
 import Manager from './manager';
+import StrategyFactory from '../strategies';
 
-const Strategies = require('../strategies')();
-
+const Strategies = StrategyFactory();
 const DEFAULT_STRATEGY = 'mongoose';
 
 
-class ProxyDb {
+export default class ProxyDb {
 	constructor(strategyName, config = {}) {
 
 		if (typeof config === 'string') config = { strategyPath: config };
@@ -55,8 +55,9 @@ class ProxyDb {
 		return this.managers[0]
 	}
 }
+
+
 ProxyDb.managers = [];
 ProxyDb.strategies = {};
 
-export default ProxyDb;
 module.exports = ProxyDb;
