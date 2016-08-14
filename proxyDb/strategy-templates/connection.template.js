@@ -1,4 +1,4 @@
-class ConnectionTemplate {
+export default class ConnectionTemplate {
 	constructor(URI, dbName, username, password) {
 		if (dbName) URI = `${URI}/${dbName}`;
 		else dbName = URI;
@@ -20,5 +20,3 @@ class ConnectionTemplate {
 	}
 
 }
-
-module.exports = ConnectionTemplate;

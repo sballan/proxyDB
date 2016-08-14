@@ -1,12 +1,14 @@
-const modelFactory = require('./model.factory');
-const connectionFactory = require('./connection.factory');
-const schemaFactory = require('./schema.factory');
+import modelFactory from './model.factory';
+import connectionFactory from './connection.factory';
+import schemaFactory from './schema.factory';
 
-module.exports = function configFactory(strategy) {
-  return {
-    Schema: schemaFactory(strategy),
-    Model: modelFactory(strategy),
-    Connection: connectionFactory(strategy),
-    get dbManager() { return strategy.dbManager }
-  }
-};
+export default strategy => {
+	return {
+		Schema: schemaFactory(strategy),
+		Model: modelFactory(strategy),
+		Connection: connectionFactory(strategy),
+		get dbManager() {
+			return strategy.dbManager
+		}
+	}
+}

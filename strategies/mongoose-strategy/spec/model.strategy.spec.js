@@ -1,10 +1,9 @@
-const expect = require("chai").expect;
-const assert = require("chai").assert;
-const helpers = require('./helpers');
+import { expect, assert } from 'chai';
+
+import helpers, { MockUserModel } from './helpers';
+import ModelStrategy from '../proxy.model';
 
 describe('Model Strategy', function () {
-	const ModelStrategy = require('../proxy.model.js');
-	const MockUserModel = require('./helpers').MockUserModel;
 	ModelStrategy.dbModel = MockUserModel;
 	ModelStrategy.modelName = 'MockUser';
 

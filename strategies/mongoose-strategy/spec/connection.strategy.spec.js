@@ -1,10 +1,8 @@
-const assert = require('chai').assert;
-const expect = require('chai').expect;
-
-const mongoose = require("../index").dbManager;
+import { expect } from 'chai';
+import { dbManager as mongoose } from '../index';
+import ConnectionConstructor from '../proxy.connection';
 
 describe('Connection Strategy', function () {
-	const ConnectionConstructor = require('../proxy.connection');
 	// Needed to get reference to mongoose the other way
 	// ConnectionConstructor.prototype.dbManager = mongoose;
 

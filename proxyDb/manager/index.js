@@ -1,1 +1,3 @@
-module.exports = require('./manager');
+import Manager from './manager';
+
+export default Manager;
