@@ -47,5 +47,3 @@ export default class Manager {
 
 
 }
-
-module.exports = Manager;

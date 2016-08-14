@@ -21,15 +21,7 @@ mongoose.connection.on('error', function (err) {
 	console.log(chalk.red(err));
 });
 
-export default {
-	schema,
-	model,
-	instance,
-	connection,
-	get dbManager() {
-		return mongoose;
-	}
-}
+export default module.exports;
 
 // TODO remove the module.exports
 

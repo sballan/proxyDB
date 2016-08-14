@@ -1,9 +1,4 @@
-export default ModelFactory;
-
-module.exports = ModelFactory;
-
-function ModelFactory(strategy) {
-
+export default strategy => {
 	/**
 	 * Makes ProxyModels using the Strategy with the class was constructed
 	 * @method modelFactory

@@ -1,8 +1,4 @@
-export default ConnectionFactory;
-
-module.exports = ConnectionFactory;
-
-function ConnectionFactory(strategy) {
+export default strategy => {
 	class ProxyConnection extends strategy.connection {}
 		// new instances will have direct access
 	ProxyConnection.dbManager = strategy.dbManager;

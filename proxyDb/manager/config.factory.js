@@ -2,11 +2,7 @@ import modelFactory from './model.factory';
 import connectionFactory from './connection.factory';
 import schemaFactory from './schema.factory';
 
-export default configFactory;
-
-module.exports = configFactory;
-
-function configFactory(strategy) {
+export default strategy => {
 	return {
 		Schema: schemaFactory(strategy),
 		Model: modelFactory(strategy),

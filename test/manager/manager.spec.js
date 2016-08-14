@@ -1,5 +1,7 @@
 import { expect, assert } from 'chai';
 
+import Manager from '../../proxyDb/manager/manager';
+
 describe('Manager', function () {
 	class Strategy {}
 	class MockDbModel {
@@ -21,7 +23,6 @@ describe('Manager', function () {
 	Strategy.connection = class Connection {}
 	Strategy.dbManager = 'MockManager'
 
-	const Manager = require('../../proxyDb/manager/manager');
 	const config = { ProxyDb: { strategies: { mockStrategy: Strategy } } }
 
 	let manager;

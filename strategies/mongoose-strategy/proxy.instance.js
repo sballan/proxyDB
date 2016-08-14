@@ -1,8 +1,8 @@
 import Promise from 'bluebird';
 
-const InstanceTemplate = require('../../proxyDb/strategy-templates').instance;
+import { instance as InstanceTemplate } from '../../proxyDb/strategy-templates';
 
-class ProxyInstance extends InstanceTemplate {
+export default class ProxyInstance extends InstanceTemplate {
 	constructor(dbInstance) {
 		super(dbInstance)
 	}
