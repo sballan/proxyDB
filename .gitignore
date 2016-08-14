@@ -5,3 +5,5 @@ jsconfig.json
 .vscode
 .idea
 demo
+typings.json
+typings/
