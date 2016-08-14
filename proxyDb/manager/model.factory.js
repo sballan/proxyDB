@@ -1,4 +1,8 @@
-module.exports = function ModelFactory(strategy) {
+export default ModelFactory;
+
+module.exports = ModelFactory;
+
+function ModelFactory(strategy) {
 
 	/**
 	 * Makes ProxyModels using the Strategy with the class was constructed
@@ -15,5 +19,4 @@ module.exports = function ModelFactory(strategy) {
 		ProxyModel.constructor.dbModel = dbModel;
 		return ProxyModel;
 	}
-
 }
