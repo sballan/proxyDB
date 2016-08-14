@@ -1,56 +1,63 @@
-const Manager = require('./manager');
-const Strategies = require('../strategies')();
+import Manager from './manager';
+import StrategyFactory from '../strategies';
+
+const Strategies = StrategyFactory();
 const DEFAULT_STRATEGY = 'mongoose';
 
-class ProxyDb {
-	constructor(strategyName, config={}) {
-		this.managers = [];
 
-		if(typeof config === 'string') config = {strategyPath: config};
+export default class ProxyDb {
+	constructor(strategyName, config = {}) {
+
+		if (typeof config === 'string') config = { strategyPath: config };
 
 		config.ProxyDb = ProxyDb;
 
-		if(!strategyName) {
+		if (!strategyName) {
 			console.warn(`|- WARNING: No strategy selected, using default strategy (${DEFAULT_STRATEGY}) -|`)
 			strategyName = DEFAULT_STRATEGY;
 		}
 
-		if(!!config.strategyPath) {
+		if (!!config.strategyPath) {
 			ProxyDb.strategies[strategyName] = require(config.strategyPath);
 		}
 
-		if(Strategies[strategyName]) {
+		if (Strategies[strategyName]) {
 			ProxyDb.strategies[strategyName] = Strategies[strategyName];
 			config.strategy = ProxyDb.strategies[strategyName];
 		}
 
 		const manager = new Manager(strategyName, config);
-		this.managers.push(manager);
+		ProxyDb.managers.push(manager);
 		return manager;
 	}
 
-	static addStrategy(name, path=Strategies[name]) {
+	static addStrategy(name, path = Strategies[name]) {
 		let strategy;
 
-		if(typeof path === 'string') {
+		if (typeof path === 'string') {
 			strategy = Strategies[name] = require(path)
-		} else if(!!path) {
+		} else if (!!path) {
 			strategy = path;
 		} else {
 			strategy = Strategies[name];
 		}
 		ProxyDb.strategies[name] = strategy;
 	}
-	
+
 	static get connections() {
-		return ProxyDb.managers.map(manager=> {
+		return this.managers.map(manager => {
 			return manager.connections
 		})
-		
+
+	}
+
+	static get db() {
+		return this.managers[0]
 	}
 }
 
-ProxyDb.strategies = {};
 
+ProxyDb.managers = [];
+ProxyDb.strategies = {};
 
 module.exports = ProxyDb;
