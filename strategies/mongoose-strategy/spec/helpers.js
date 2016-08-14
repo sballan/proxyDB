@@ -1,5 +1,7 @@
 import { dbManager as mongoose } from '../index';
 
+export default module.exports;
+
 const DBURI = 'mongodb://localhost:27017/proxyDb-mock';
 
 
@@ -19,5 +21,3 @@ module.exports = {
 		mongoose.connection.close(done)
 	}
 }
-
-export default module.exports;
