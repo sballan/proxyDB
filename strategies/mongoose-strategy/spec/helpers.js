@@ -1,12 +1,10 @@
 import { dbManager as mongoose } from '../index';
 
-export default module.exports;
+export default e;
 
 const DBURI = 'mongodb://localhost:27017/proxyDb-mock';
 
-
-// TODO remove the module.exports
-module.exports = {
+const e = {
 	MockUserModel: mongoose.model('MockUserModel',
 		new mongoose.Schema({ age: Number, name: String })),
 	DBURI,
@@ -21,3 +19,5 @@ module.exports = {
 		mongoose.connection.close(done)
 	}
 }
+
+module.exports = e;
