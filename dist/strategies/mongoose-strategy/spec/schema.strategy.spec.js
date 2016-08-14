@@ -1,0 +1,36 @@
+'use strict';
+
+var _chai = require('chai');
+
+var _index = require('../index');
+
+var _proxy = require('../proxy.schema');
+
+var _proxy2 = _interopRequireDefault(_proxy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+describe('Schema Strategy', function () {
+	var dbSchema = new _index.dbManager.Schema({ title: String, age: Number });
+
+	it('can register an existing dbSchema', function () {
+		var pSchema = _proxy2.default.register('User', dbSchema);
+		(0, _chai.expect)(pSchema).to.have.property('dbSchema');
+		(0, _chai.expect)(_proxy2.default).to.have.deep.property('_schemas.User');
+		(0, _chai.expect)(pSchema.dbSchema instanceof _index.dbManager.Schema).to.be.true;
+	});
+
+	it('creates a new dbSchema as part of a new pSchema', function () {
+		var pSchema = new _proxy2.default('Book', { title: String });
+		(0, _chai.expect)(pSchema).to.have.property('dbSchema');
+		(0, _chai.expect)(pSchema.dbSchema instanceof _index.dbManager.Schema).to.be.true;
+	});
+
+	it('can create a pModel and dbModel from a Schema', function () {
+		var House = _proxy2.default.makeModel('House', { address: String });
+		var myHouse = new House({ address: "123 Cherry Lane" });
+		// expect(pSchema).to.have.property('dbSchema')
+		// expect(pSchema.dbSchema instanceof mongoose.Schema).to.be.true
+	});
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3N0cmF0ZWdpZXMvbW9uZ29vc2Utc3RyYXRlZ3kvc3BlYy9zY2hlbWEuc3RyYXRlZ3kuc3BlYy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBOztBQUVBOztBQUNBOzs7Ozs7QUFFQSxTQUFTLGlCQUFULEVBQTRCLFlBQVk7QUFDdkMsS0FBTSxXQUFXLElBQUksaUJBQVMsTUFBYixDQUFvQixFQUFFLE9BQU8sTUFBVCxFQUFpQixLQUFLLE1BQXRCLEVBQXBCLENBQWpCOztBQUVBLElBQUcsbUNBQUgsRUFBd0MsWUFBWTtBQUNuRCxNQUFNLFVBQVUsZ0JBQWUsUUFBZixDQUF3QixNQUF4QixFQUFnQyxRQUFoQyxDQUFoQjtBQUNBLG9CQUFPLE9BQVAsRUFBZ0IsRUFBaEIsQ0FBbUIsSUFBbkIsQ0FBd0IsUUFBeEIsQ0FBaUMsVUFBakM7QUFDQSxxQ0FBdUIsRUFBdkIsQ0FBMEIsSUFBMUIsQ0FBK0IsSUFBL0IsQ0FBb0MsUUFBcEMsQ0FBNkMsZUFBN0M7QUFDQSxvQkFBTyxRQUFRLFFBQVIsWUFBNEIsaUJBQVMsTUFBNUMsRUFBb0QsRUFBcEQsQ0FBdUQsRUFBdkQsQ0FBMEQsSUFBMUQ7QUFDQSxFQUxEOztBQU9BLElBQUcsaURBQUgsRUFBc0QsWUFBWTtBQUNqRSxNQUFNLFVBQVUsb0JBQW1CLE1BQW5CLEVBQTJCLEVBQUUsT0FBTyxNQUFULEVBQTNCLENBQWhCO0FBQ0Esb0JBQU8sT0FBUCxFQUFnQixFQUFoQixDQUFtQixJQUFuQixDQUF3QixRQUF4QixDQUFpQyxVQUFqQztBQUNBLG9CQUFPLFFBQVEsUUFBUixZQUE0QixpQkFBUyxNQUE1QyxFQUFvRCxFQUFwRCxDQUF1RCxFQUF2RCxDQUEwRCxJQUExRDtBQUNBLEVBSkQ7O0FBTUEsSUFBRywrQ0FBSCxFQUFvRCxZQUFZO0FBQy9ELE1BQU0sUUFBUSxnQkFBZSxTQUFmLENBQXlCLE9BQXpCLEVBQWtDLEVBQUUsU0FBUyxNQUFYLEVBQWxDLENBQWQ7QUFDQSxNQUFNLFVBQVUsSUFBSSxLQUFKLENBQVUsRUFBRSxTQUFTLGlCQUFYLEVBQVYsQ0FBaEI7QUFDQTtBQUNBO0FBQ0EsRUFMRDtBQVdBLENBM0JEIiwiZmlsZSI6InNjaGVtYS5zdHJhdGVneS5zcGVjLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZXhwZWN0IH0gZnJvbSAnY2hhaSc7XG5cbmltcG9ydCB7IGRiTWFuYWdlciBhcyBtb25nb29zZSB9IGZyb20gJy4uL2luZGV4JztcbmltcG9ydCBTY2hlbWFTdHJhdGVneSBmcm9tICcuLi9wcm94eS5zY2hlbWEnO1xuXG5kZXNjcmliZSgnU2NoZW1hIFN0cmF0ZWd5JywgZnVuY3Rpb24gKCkge1xuXHRjb25zdCBkYlNjaGVtYSA9IG5ldyBtb25nb29zZS5TY2hlbWEoeyB0aXRsZTogU3RyaW5nLCBhZ2U6IE51bWJlciB9KTtcblxuXHRpdCgnY2FuIHJlZ2lzdGVyIGFuIGV4aXN0aW5nIGRiU2NoZW1hJywgZnVuY3Rpb24gKCkge1xuXHRcdGNvbnN0IHBTY2hlbWEgPSBTY2hlbWFTdHJhdGVneS5yZWdpc3RlcignVXNlcicsIGRiU2NoZW1hKTtcblx0XHRleHBlY3QocFNjaGVtYSkudG8uaGF2ZS5wcm9wZXJ0eSgnZGJTY2hlbWEnKVxuXHRcdGV4cGVjdChTY2hlbWFTdHJhdGVneSkudG8uaGF2ZS5kZWVwLnByb3BlcnR5KCdfc2NoZW1hcy5Vc2VyJylcblx0XHRleHBlY3QocFNjaGVtYS5kYlNjaGVtYSBpbnN0YW5jZW9mIG1vbmdvb3NlLlNjaGVtYSkudG8uYmUudHJ1ZVxuXHR9KTtcblxuXHRpdCgnY3JlYXRlcyBhIG5ldyBkYlNjaGVtYSBhcyBwYXJ0IG9mIGEgbmV3IHBTY2hlbWEnLCBmdW5jdGlvbiAoKSB7XG5cdFx0Y29uc3QgcFNjaGVtYSA9IG5ldyBTY2hlbWFTdHJhdGVneSgnQm9vaycsIHsgdGl0bGU6IFN0cmluZyB9KTtcblx0XHRleHBlY3QocFNjaGVtYSkudG8uaGF2ZS5wcm9wZXJ0eSgnZGJTY2hlbWEnKVxuXHRcdGV4cGVjdChwU2NoZW1hLmRiU2NoZW1hIGluc3RhbmNlb2YgbW9uZ29vc2UuU2NoZW1hKS50by5iZS50cnVlXG5cdH0pO1xuXG5cdGl0KCdjYW4gY3JlYXRlIGEgcE1vZGVsIGFuZCBkYk1vZGVsIGZyb20gYSBTY2hlbWEnLCBmdW5jdGlvbiAoKSB7XG5cdFx0Y29uc3QgSG91c2UgPSBTY2hlbWFTdHJhdGVneS5tYWtlTW9kZWwoJ0hvdXNlJywgeyBhZGRyZXNzOiBTdHJpbmcgfSk7XG5cdFx0Y29uc3QgbXlIb3VzZSA9IG5ldyBIb3VzZSh7IGFkZHJlc3M6IFwiMTIzIENoZXJyeSBMYW5lXCIgfSk7XG5cdFx0Ly8gZXhwZWN0KHBTY2hlbWEpLnRvLmhhdmUucHJvcGVydHkoJ2RiU2NoZW1hJylcblx0XHQvLyBleHBlY3QocFNjaGVtYS5kYlNjaGVtYSBpbnN0YW5jZW9mIG1vbmdvb3NlLlNjaGVtYSkudG8uYmUudHJ1ZVxuXHR9KTtcblxuXG5cblxuXG59KTsiXX0=
