@@ -3,12 +3,12 @@
  * @type ProxyModelTemplate $cls
  * @param {String} dbInstance Database Instance
  */
-export default class ProxyInstanceTemplate {
+export default class ProxyModelTemplate {
 	constructor(dbInstance, create = true) {
-		this.model = new.target;
+		this.model = this.constructor;
 
 		if (create) {
-			this.dbInstance = new.target.create(dbInstance)
+			this.dbInstance = this.constructor.dbCreate(dbInstance);
 		} else {
 			this.dbInstance = dbInstance;
 		}
@@ -59,6 +59,10 @@ export default class ProxyInstanceTemplate {
 		throw new ReferenceError(`create is not implemented in this strategy.`);
 	}
 
+	static dbCreate() {
+		throw new ReferenceError(`dbCreate is not implemented in this strategy.`);
+	}
+
 	static find() {
 		throw new ReferenceError(`find is not implemented in this strategy.`);
 	}
@@ -78,11 +82,11 @@ export default class ProxyInstanceTemplate {
 	static proxify(dbInstance) {
 		if (Array.isArray(dbInstance)) {
 			return dbInstance.map(i => {
-				return new ProxyInstanceTemplate(i)
+				return new this(i, false);
 			})
 		}
 
-		return new ProxyInstanceTemplate(dbInstance);
+		return new this(dbInstance, false);
 	}
 
 

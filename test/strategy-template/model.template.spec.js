@@ -10,7 +10,11 @@ class Model extends ProxyModelTemplate {
 	}
 	static create(data) {
 		data._id = -1;
-		return Promise.resolve(data);
+		return this.proxify(data);
+	}
+
+	static dbCreate(data) {
+		return data;
 	}
 }
 
@@ -38,7 +42,7 @@ describe('ProxyModelTemplate Class', function () {
 
 describe('ProxyModelTemplate Instance', function () {
 	const dbInstance = { mock: 'data' }
-	const instance = new Model(dbInstance)
+	const instance = new Model(dbInstance, false)
 
 	it('is a constructor function', function () {
 		assert.isFunction(Model)
