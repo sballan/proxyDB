@@ -1,5 +1,4 @@
 import { model as ModelTemplate } from '../../proxyDb/strategy-templates';
-import ProxyInstance from './proxy.instance';
 
 export default class ProxyModel extends ModelTemplate {
 	constructor(dbInstance) {
@@ -23,16 +22,6 @@ export default class ProxyModel extends ModelTemplate {
 	static findOne(query) {
 		return this.dbModel.findOne(query).exec()
 			.then(this.proxify)
-	}
-
-	static proxify(dbInstance) {
-		if (Array.isArray(dbInstance)) {
-			return dbInstance.map(i => {
-				return new ProxyInstance(i)
-			})
-		}
-
-		return new ProxyInstance(dbInstance);
 	}
 
 }

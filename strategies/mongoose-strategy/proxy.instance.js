@@ -3,10 +3,6 @@ import Promise from 'bluebird';
 import { model as ModelTemplate } from '../../proxyDb/strategy-templates';
 
 export default class ProxyInstance extends ModelTemplate {
-	constructor(dbInstance) {
-		super(dbInstance)
-	}
-
 	save() {
 		return Promise.resolve({})
 			.then(() => {
@@ -54,16 +50,10 @@ export default class ProxyInstance extends ModelTemplate {
 	}
 
 	static proxify(dbInstance) {
-		if (Array.isArray(dbInstance)) {
-			return dbInstance.map(i => {
-				return new ProxyInstance(i)
-			})
-		}
 
-		return new ProxyInstance(dbInstance);
 	}
 
-
 }
+
 
 module.exports = ProxyInstance;

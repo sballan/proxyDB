@@ -4,9 +4,15 @@
  * @param {String} dbInstance Database Instance
  */
 export default class ProxyInstanceTemplate {
-	constructor(dbInstance) {
+	constructor(dbInstance, create = true) {
 		this.model = new.target;
-		this.dbInstance = dbInstance;
+
+		if (create) {
+			this.dbInstance = new.target.create(dbInstance)
+		} else {
+			this.dbInstance = dbInstance;
+		}
+
 	}
 
 	save() {
