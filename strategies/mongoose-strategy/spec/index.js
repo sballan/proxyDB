@@ -3,7 +3,6 @@
 const tests = [
 	'connection.strategy',
 	'model.strategy',
-	'instance.strategy',
 	'schema.strategy'
 ]
 
