@@ -1,5 +1,9 @@
 {
-	"plugins": ["transform-strict-mode"],
-	"presets": ["es2015"],
-	"sourceMaps": "inline"
+	"plugins": [
+		"transform-strict-mode",
+		"transform-class-properties",
+		"transform-export-extensions",
+		"transform-runtime"
+	],
+	"presets": ["es2015"]
 }

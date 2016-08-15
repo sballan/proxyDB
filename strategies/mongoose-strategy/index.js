@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import schema from './proxy.schema';
 import model from './proxy.model';
-import instance from './proxy.instance';
 import connection from './proxy.connection'
 
 mongoose.Promise = bluebird;
@@ -28,7 +27,6 @@ export default module.exports;
 module.exports = {
 	schema,
 	model,
-	instance,
 	connection,
 	get dbManager() {
 		return mongoose;
