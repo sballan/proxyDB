@@ -1,32 +1,67 @@
 import chalk from 'chalk';
+import Promise from 'bluebird';
 
 import { model as ModelTemplate } from '../../proxyDb/strategy-templates';
-import ProxyInstance from './proxy.instance';
+
 
 export default class ProxyModel extends ModelTemplate {
-	constructor(dbInstance) {
-		super(dbInstance)
+	save() {
+		return Promise.resolve({})
+			.then(() => {
+				return this.dbInstance.save()
+			})
+			.then(() => {
+				return this;
+			});
+	}
+
+	update(data) {
+		return this.dbInstance.update(data).exec()
+			.then(() => {
+				return this.refresh();
+			});
+	}
+
+	refresh() {
+		const id = this.dbInstance.id;
+		return this.dbInstance.constructor.findById(id).exec()
+			.then(dbInstance => {
+				this.dbInstance = dbInstance;
+				return this;
+			});
 	}
 
 	static create(query) {
 		if (!this.dbModel) {
-			throw ("Create cannot be called without modelName and dbModel defined")
+			throw ("Create cannot be called without modelName and dbModel defined");
 		}
 		return this.dbModel.create(query)
-			.then(this.proxify)
+			.then(dbInstance => {
+				return this.proxify(dbInstance, false)
+			});
+
+	}
+
+	static dbCreate(query) {
+		return new this.dbModel(query);
 
 	}
 
 	static find(query) {
 		return this.dbModel.find(query).exec()
-			.then(this.proxify)
+			.then(dbInstance => {
+				return this.proxify(dbInstance, false)
+			});
 	}
 
 	static findOne(query) {
 		return this.dbModel.findOne(query).exec()
-			.then(this.proxify)
+			.then(dbInstance => {
+				return this.proxify(dbInstance, false)
+			});
 	}
 
+<<<<<<< HEAD
 	static findById(query) {
 		return this.dbModel.findById(query).exec()
 		.then(this.proxify)
@@ -59,15 +94,18 @@ export default class ProxyModel extends ModelTemplate {
 	}
 	
 	static proxify(dbInstance) {
+=======
+	static proxify(dbInstance, create = false) {
+>>>>>>> alpha
 		if (Array.isArray(dbInstance)) {
 			return dbInstance.map(i => {
-				return new ProxyInstance(i)
+				return new this(i, false);
 			})
 		}
-
-		return new ProxyInstance(dbInstance);
+		return new this(dbInstance, false);
 	}
 
 }
+
 
 module.exports = ProxyModel;

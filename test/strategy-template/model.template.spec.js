@@ -1,44 +1,56 @@
 import Promise from 'bluebird';
-import { expect } from 'chai';
-import { model as OrigProxyTemplate } from '../../proxyDb/strategy-templates'
+import { expect, assert } from 'chai';
+import { model as ProxyModelTemplate } from '../../proxyDb/strategy-templates';
 
-class ModelTemplate extends OrigProxyTemplate {}
-
-const MockModel = class MyModel {
+class Model extends ProxyModelTemplate {
 	constructor(data) {
+		super(data)
 		this.name = data.name;
 		this._id = -1
 	}
 	static create(data) {
 		data._id = -1;
-		return Promise.resolve(data);
+		return this.proxify(data);
+	}
+
+	static dbCreate(data) {
+		return data;
 	}
 }
 
-describe('Model Template', function () {
-	ModelTemplate.dbModel = MockModel;
-	ModelTemplate.modelName = 'myModel';
+const MockModel = { name: 'MockModel' }
 
+Model.dbModel = MockModel;
+Model.modelName = 'myModel';
 
+describe('ProxyModelTemplate Class', function () {
 	it('its find and update methods are not implemented', function () {
-		expect(ModelTemplate.find).to.throw(ReferenceError);
-		expect(ModelTemplate.findOne).to.throw(ReferenceError);
-		expect(ModelTemplate.update).to.throw(ReferenceError);
-		expect(ModelTemplate.updateOne).to.throw(ReferenceError);
+		expect(Model.find).to.throw(ReferenceError);
+		expect(Model.findOne).to.throw(ReferenceError);
+		expect(Model.update).to.throw(ReferenceError);
+		expect(Model.updateOne).to.throw(ReferenceError);
 	});
 
 	it('its has a name and a reference to a dbModel', function () {
-		expect(ModelTemplate).to.have.property('dbModel', MockModel);
-		expect(ModelTemplate).to.have.property('modelName', 'myModel');
+		expect(Model).to.have.property('dbModel', MockModel);
+		expect(Model).to.have.property('modelName', 'myModel');
 	});
 
-	it('its returns a proxified instance of the model when called with "new"', function () {
-		const dbInstance = { name: 'Jane' }
-		const myInstance = new ModelTemplate(dbInstance)
 
-		expect(myInstance).to.have.property('dbInstance')
-		expect(myInstance).to.have.deep.property('dbInstance.name', 'Jane')
 
+});
+
+describe('ProxyModelTemplate Instance', function () {
+	const dbInstance = { mock: 'data' }
+	const instance = new Model(dbInstance, false)
+
+	it('is a constructor function', function () {
+		assert.isFunction(Model)
+		assert.isObject(instance)
+	});
+
+	it('has a reference to its dbInstance', function () {
+		expect(instance).to.have.property('dbInstance', dbInstance)
 	});
 
 
