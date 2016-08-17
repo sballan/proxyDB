@@ -86,10 +86,9 @@ var ProxyDb = function () {
 	return ProxyDb;
 }();
 
-exports.default = ProxyDb;
-
-
 ProxyDb.managers = [];
 ProxyDb.strategies = {};
+exports.default = ProxyDb;
+
 
 module.exports = ProxyDb;
