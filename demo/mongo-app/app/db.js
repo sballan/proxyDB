@@ -17,4 +17,4 @@ startDb.then(function (connection) {
 })
 
 
-module.exports = startDb
+module.exports = startDb;

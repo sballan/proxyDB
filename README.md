@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/sballan/proxyDB.svg?branch=master)](https://travis-ci.org/sballan/proxyDB)
+[![Build Status][image-1]][1]
 
 ### Syntactic sugar for your favorite ODB/ORM
 
@@ -8,3 +8,9 @@
 - Fully pluggable, any ODM/ORM can be configured by extending easy to use template classes.
 
 ProxyDb is in the early stages of the development, but most of the core functionality is currently live. Feel free to submit pull requests!
+
+
+
+[1]:	https://travis-ci.org/sballan/proxyDB
+
+[image-1]:	https://travis-ci.org/sballan/proxyDB.svg?branch=master

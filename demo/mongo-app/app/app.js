@@ -5,8 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var express = require('express');
 var chalk = require('chalk');
-var db = require('proxydb');
-console.log('DB', db);
+var db = require('proxydb').db;
 var app = express();
 
 module.exports = app;
@@ -18,15 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Log
 app.use(function (req, res, next) {
-    util.log(('---NEW REQUEST---'));
-    console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
-    console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
-    console.log(util.format(chalk.cyan('%s: %s'), 'BODY    ', util.inspect(req.body)));
-    next();
+	util.log(('---NEW REQUEST---'));
+	console.log(util.format(chalk.red('%s: %s %s'), 'REQUEST ', req.method, req.path));
+	console.log(util.format(chalk.yellow('%s: %s'), 'QUERY   ', util.inspect(req.query)));
+	console.log(util.format(chalk.cyan('%s: %s'), 'BODY    ', util.inspect(req.body)));
+	next();
 })
 
-app.get('/', function(req, res, next) {
-	res.send({success:true})
+app.get('/', function (req, res, next) {
+	res.send({ success: true })
 });
 
 app.use(function (req, res, next) {
@@ -37,17 +36,18 @@ app.use(function (req, res, next) {
 	}
 });
 
-app.get('/users', function(req, res, next) {
+app.get('/users', function (req, res, next) {
 	console.log(chalk.blue('Hit Users route'));
+	console.log(chalk.red('db is', db.model("User")));
 	var User = db.model('User');
 	User.find({})
-	.then(function(users) {
-		res.send(users)
-	})
-	.catch(function(err) {
-		console.log(chalk.red(err))
-		next(err)
-	})
+		.then(function (users) {
+			res.send(users)
+		})
+		.catch(function (err) {
+			console.log(chalk.red(err))
+			next(err)
+		})
 });
 
 // Error catching endware.

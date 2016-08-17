@@ -6,6 +6,9 @@ const DEFAULT_STRATEGY = 'mongoose';
 
 
 export default class ProxyDb {
+	static managers = [];
+	static strategies = {};
+
 	constructor(strategyName, config = {}) {
 
 		if (typeof config === 'string') config = { strategyPath: config };
@@ -56,8 +59,5 @@ export default class ProxyDb {
 	}
 }
 
-
-ProxyDb.managers = [];
-ProxyDb.strategies = {};
 
 module.exports = ProxyDb;
