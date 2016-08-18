@@ -15,7 +15,6 @@ export default class Manager {
 		if (!data) {
 			return this._models[modelName];
 		}
-		console.log('This.core from Manager', this.core)
 
 		const model = this.modelFactory(modelName, data);
 

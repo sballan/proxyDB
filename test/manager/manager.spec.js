@@ -28,7 +28,6 @@ describe('Manager', function () {
 	});
 
 	it('instance of Manager has reference to its Core', function () {
-		console.log("STRATEGY:", Strategy)
 		manager = new Manager('mockStrategy', config);
 		expect(manager).to.have.property('core');
 		expect(manager).to.have.deep.property('core.modelFactory', Strategy.modelFactory);

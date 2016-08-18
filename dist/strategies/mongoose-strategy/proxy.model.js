@@ -46,9 +46,9 @@ var ProxyModel = function (_ModelTemplate) {
 			var _this2 = this;
 
 			return _bluebird2.default.resolve({}).then(function () {
-				return _this2.dbInstance.save();
-			}).then(function () {
-				return _this2;
+				return _this2.dbInstance.save().then(function () {
+					return _this2;
+				});
 			});
 		}
 	}, {

@@ -15,7 +15,6 @@ var _createClass3 = _interopRequireDefault(_createClass2);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProxySchemaTemplate = function () {
-	// creates dbSchema, returns pSchema.
 	function ProxySchemaTemplate() {
 		(0, _classCallCheck3.default)(this, ProxySchemaTemplate);
 
@@ -23,6 +22,7 @@ var ProxySchemaTemplate = function () {
 			this.schemaName = arguments.length <= 0 ? undefined : arguments[0];
 		}
 	}
+	// creates dbSchema, returns pSchema.
 
 	(0, _createClass3.default)(ProxySchemaTemplate, null, [{
 		key: 'register',
@@ -53,7 +53,5 @@ var ProxySchemaTemplate = function () {
 	return ProxySchemaTemplate;
 }();
 
-exports.default = ProxySchemaTemplate;
-
-
 ProxySchemaTemplate._schemas = {};
+exports.default = ProxySchemaTemplate;

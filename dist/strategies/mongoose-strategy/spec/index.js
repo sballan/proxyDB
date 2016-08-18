@@ -2,7 +2,7 @@
 
 // Specific strategies have their test located locally.
 
-var tests = ['connection.strategy', 'model.strategy', 'schema.strategy'];
+var tests = ['connection.strategy', 'model.strategy'];
 
 describe('Mongoose Strategy Suite', function () {
 	// before(connections.open)

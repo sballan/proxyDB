@@ -26,6 +26,8 @@ var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _strategyTemplates = require('../../proxyDb/strategy-templates');
 
+var _proxy = require('./proxy.adapter');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ProxyConnection = function (_ConnectionTemplate) {
@@ -38,8 +40,7 @@ var ProxyConnection = function (_ConnectionTemplate) {
 
 		var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ProxyConnection).call(this, URI, dbName));
 
-		var mongoose = require("./index").dbManager;
-		_this.dbConnection = mongoose.createConnection();
+		_this.dbConnection = (0, _proxy.makeConnection)();
 		return _this;
 	}
 
@@ -49,12 +50,12 @@ var ProxyConnection = function (_ConnectionTemplate) {
 	(0, _createClass3.default)(ProxyConnection, [{
 		key: 'open',
 		value: function open(cb) {
-			return this.dbConnection.open(this.URI, cb);
+			return (0, _proxy.openConnection)(this.dbConnection, this.URI, cb);
 		}
 	}, {
 		key: 'close',
 		value: function close(cb) {
-			return this.dbConnection.close(cb);
+			return (0, _proxy.closeConnection)(this.dbConnection, cb);
 		}
 	}]);
 	return ProxyConnection;
