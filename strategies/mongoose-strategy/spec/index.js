@@ -3,7 +3,6 @@
 const tests = [
 	'connection.strategy',
 	'model.strategy',
-	'schema.strategy'
 ]
 
 describe('Mongoose Strategy Suite', function () {

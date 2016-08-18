@@ -1,5 +1,8 @@
 export default class ProxySchemaTemplate {
 	// creates dbSchema, returns pSchema.
+
+	static _schemas = {}
+
 	constructor(...args) {
 		if (typeof args[0] === 'string') {
 			this.schemaName = args[0];
@@ -29,5 +32,3 @@ export default class ProxySchemaTemplate {
 	}
 
 }
-
-ProxySchemaTemplate._schemas = {}

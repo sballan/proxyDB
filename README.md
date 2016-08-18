@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/sballan/proxyDB.svg?branch=master)](https://travis-ci.org/sballan/proxyDB)
-
+## ProxyDb
 ### Syntactic sugar for your favorite ODB/ORM
 
 - A JavaScript framework written in ES6, ready to work as an npm module
@@ -8,3 +8,36 @@
 - Fully pluggable, any ODM/ORM can be configured by extending easy to use template classes.
 
 ProxyDb is in the early stages of the development, but most of the core functionality is currently live. Feel free to submit pull requests!
+
+
+
+## API
+
+#### ProxyDb
+- class properties:
+	- `managers`
+	- `strategies`
+	- `connections`
+	- `db`
+- class functions:
+	- `addStrategy`
+
+#### Manager
+- instance properties
+	- `ProxyDb`
+	- `strategy`
+	- `config`
+	- `dbManager`
+	- `Model`
+	- `Connection`
+	- `Schema`
+	- `_models`
+	- `_connections`
+	- `_schemas`
+- instance methods
+	- `model`
+	- `connection`
+
+
+
+

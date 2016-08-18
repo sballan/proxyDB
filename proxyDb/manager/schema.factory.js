@@ -1,1 +1,0 @@
-export default strategy => strategy.schema;

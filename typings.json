@@ -1,8 +1,7 @@
 {
   "globalDependencies": {
     "bluebird": "registry:dt/bluebird#2.0.0+20160701023356",
-    "lodash": "registry:dt/lodash#4.14.0+20160802150749",
-    "lokijs": "registry:dt/lokijs#0.0.0+20160316155526"
+    "lodash": "registry:dt/lodash#4.14.0+20160802150749"
   },
   "globalDevDependencies": {
     "chai": "registry:dt/chai#3.4.0+20160601211834",

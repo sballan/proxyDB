@@ -1,29 +1,25 @@
 import { expect, assert } from 'chai';
 
-import Manager from '../../proxyDb/manager/manager';
+import Manager from '../../proxyDb/manager';
 
 describe('Manager', function () {
-	class Strategy {}
 	class MockDbModel {
 		constructor(i) {
-			return i
+			this.i = i;
 		}
 	}
-
-	Strategy.model = class ModelStrategy {}
-	Strategy.schema = class SchemaStrategy {
-		static makeModel(mockName, mockData) {
-			class MockModel extends mockData {}
-			MockModel.modelName = mockName;
-			MockModel.dbModel = MockDbModel;
-			MockModel.constructor.dbModel = new MockDbModel();
-			return MockModel;
+	const Strategy = {
+		dbManager: 'MockManager',
+		connection: class Connection {},
+		modelFactory: (name, data) => {
+			const Model = () => ({ modelName: name, dbModel: data })
+			Model.dbModel = data;
+			return Model;
 		}
-	}
-	Strategy.connection = class Connection {}
-	Strategy.dbManager = 'MockManager'
+	};
 
-	const config = { ProxyDb: { strategies: { mockStrategy: Strategy } } }
+
+	const config = { ProxyDb: { strategies: { mockStrategy: Strategy } } };
 
 	let manager;
 
@@ -31,11 +27,11 @@ describe('Manager', function () {
 		assert.isFunction(Manager);
 	});
 
-	it('instance of Manager has reference to its Strategy', function () {
+	it('instance of Manager has reference to its Core', function () {
 		manager = new Manager('mockStrategy', config);
-		expect(manager).to.have.property('strategy', Strategy);
-		expect(manager).to.have.deep.property('strategy.model', Strategy.model);
-		expect(manager).to.have.deep.property('strategy.connection', Strategy.connection);
+		expect(manager).to.have.property('core');
+		expect(manager).to.have.deep.property('core.modelFactory', Strategy.modelFactory);
+		expect(manager).to.have.deep.property('core.connection', Strategy.connection);
 	});
 
 	it('can create and register new ProxyModels', function () {
