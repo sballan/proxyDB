@@ -16,8 +16,9 @@ export default class Manager {
 		if (!data) {
 			return this._models[modelName];
 		}
+		console.log(this.config)
 
-		const model = this.Schema.makeModel(modelName, data);
+		const model = this.config.modelFactory(modelName, data);
 
 		this._models[modelName] = model;
 		return model;
@@ -39,10 +40,6 @@ export default class Manager {
 
 	get Connection() {
 		return this.config.Connection;
-	}
-
-	get Schema() {
-		return this.config.Schema;
 	}
 
 

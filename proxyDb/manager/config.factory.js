@@ -4,7 +4,7 @@ import schemaFactory from './schema.factory';
 
 export default strategy => {
 	return {
-		Schema: schemaFactory(strategy),
+		modelFactory: strategy.modelFactory,
 		Model: modelFactory(strategy),
 		Connection: connectionFactory(strategy),
 		get dbManager() {

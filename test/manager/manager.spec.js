@@ -1,6 +1,6 @@
 import { expect, assert } from 'chai';
 
-import Manager from '../../proxyDb/manager/manager';
+import Manager from '../../proxyDb/manager';
 
 describe('Manager', function () {
 	class Strategy {}
@@ -11,17 +11,13 @@ describe('Manager', function () {
 	}
 
 	Strategy.model = class ModelStrategy {}
-	Strategy.schema = class SchemaStrategy {
-		static makeModel(mockName, mockData) {
-			class MockModel extends mockData {}
-			MockModel.modelName = mockName;
-			MockModel.dbModel = MockDbModel;
-			MockModel.constructor.dbModel = new MockDbModel();
-			return MockModel;
-		}
-	}
 	Strategy.connection = class Connection {}
-	Strategy.dbManager = 'MockManager'
+	Strategy.modelFactory = (name, data) => {
+		const Model = () => ({ modelName: name, dbModel: data })
+		Model.dbModel = data;
+		return Model
+	};
+	Strategy.dbManager = 'MockManager';
 
 	const config = { ProxyDb: { strategies: { mockStrategy: Strategy } } }
 

@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
-import schema from './proxy.schema';
 import model from './proxy.model';
-import connection from './proxy.connection'
+import connection from './proxy.connection';
+import modelFactory from './proxy.model-factory';
 
 mongoose.Promise = bluebird;
 
@@ -25,9 +25,9 @@ export default module.exports;
 // TODO remove the module.exports
 
 module.exports = {
-	schema,
 	model,
 	connection,
+	modelFactory,
 	get dbManager() {
 		return mongoose;
 	}
