@@ -1,15 +1,14 @@
-import configFactory from './config.factory';
+import coreFactory from './core.factory';
 
 export default class Manager {
 	constructor(strategyName, config = {}) {
 		this.ProxyDb = config.ProxyDb;
 		this._models = {};
 		this._connections = {};
-		this._schemas = {}
 
-		this.strategy = this.ProxyDb.strategies[strategyName];
+		const strategy = this.ProxyDb.strategies[strategyName];
 		// _.defaults(config, configFactory(this.strategy));
-		this.config = configFactory(this.strategy)
+		this.core = coreFactory(strategy);
 	}
 
 	model(modelName, data) {
@@ -17,7 +16,7 @@ export default class Manager {
 			return this._models[modelName];
 		}
 
-		const model = this.Schema.makeModel(modelName, data);
+		const model = this.modelFactory(modelName, data);
 
 		this._models[modelName] = model;
 		return model;
@@ -29,20 +28,16 @@ export default class Manager {
 		return connection;
 	}
 
-	get dbManager() {
-		return this.config.dbManager;
+	modelFactory(modelName, data) {
+		return this.core.modelFactory(modelName, data);
 	}
 
-	get Model() {
-		return this.config.Model;
+	get dbManager() {
+		return this.core.dbManager;
 	}
 
 	get Connection() {
-		return this.config.Connection;
-	}
-
-	get Schema() {
-		return this.config.Schema;
+		return this.core.connection;
 	}
 
 
