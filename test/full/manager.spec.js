@@ -19,17 +19,19 @@ describe('Manager', function () {
 		manager = new ProxyDb('mongoose');
 
 		expect(manager).to.have.property('ProxyDb', ProxyDb);
-		expect(manager).to.have.property('strategy');
 		expect(manager).to.have.property('_models');
 		expect(manager).to.have.property('_connections');
-		expect(manager).to.have.property('connection');
 		expect(manager).to.have.property('model');
+		expect(manager).to.have.property('connection');
+		expect(manager).to.have.property('modelFactory');
+		expect(manager).to.have.property('dbManager');
+		expect(manager).to.have.property('Connection');
 	});
 
 	it('strategy has a reference to its dbManager', function () {
-		mongoose = manager.strategy.dbManager;
-		mongoose.Promise = Promise
-		expect(mongoose).to.equal(manager.strategy.dbManager)
+		mongoose = manager.core.dbManager;
+		mongoose.Promise = Promise;
+		expect(mongoose).to.equal(manager.core.dbManager)
 	})
 
 	it('can open a connection to the db', function (done) {
@@ -38,15 +40,15 @@ describe('Manager', function () {
 		connection.open(function () {
 			expect(connection.dbName).to.equal('proxyDb-mock')
 			expect(connection.dbConnection._readyState).to.equal(1)
-			done()
-		})
-	})
+			done();
+		});
+	});
 
-	it('can register existing dbSchemas', function () {
+	xit('can register existing dbSchemas', function () {
 		const User = new mongoose.Schema(helpers.Schema);
 		manager.model('User', User);
 		expect(manager).to.have.deep.property('_models.User');
-	})
+	});
 
 	it('can create new dbSchemas automatically while making new models', function () {
 		const Animal = manager.model('Animal', { name: String, color: String });
@@ -57,20 +59,20 @@ describe('Manager', function () {
 	})
 
 	it('ProxyModels can create new dbInstances which are also added to database', function () {
-		const User = manager.model('User');
-		const sam = new User({ age: 25, name: 'Sam' });
+		const Animal = manager.model('Animal');
+		const dog = new Animal({ name: 'dog', color: 'brown' });
 
-		const promise = sam.save()
+		const promise = dog.save()
 		Promise.resolve(promise)
-			.then(function (dbSam) {
-				return User.dbModel.findById(sam.dbInstance._id)
+			.then(function (dbDog) {
+				return Animal.dbModel.findById(dog.dbInstance._id)
 			})
-			.then(function (dbSam) {
-				expect(dbSam.id).to.equal(sam.dbInstance.id)
+			.then(function (dbDog) {
+				expect(dbDog.id).to.equal(dog.dbInstance.id)
 			})
 			.catch(function (err) {
 				assert.fail(err)
-				console.log(err)
+				console.log(err);
 			})
 
 	})

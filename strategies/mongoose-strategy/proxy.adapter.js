@@ -9,8 +9,8 @@ export { mongoose };
  * only access it indirectly via this object
  */
 
-export function makeSchema(name, props) {
-	return new mongoose.Schema(name, props)
+export function makeSchema(props) {
+	return new mongoose.Schema(props)
 }
 
 export function isSchema(schema) {
@@ -21,7 +21,7 @@ export function makeModel(name, schema) {
 	let dbSchema;
 	if (schema instanceof mongoose.Schema) {
 		dbSchema = schema;
-	} else dbSchema = this.makeSchema(name, schema)
+	} else dbSchema = makeSchema(name, schema)
 
 	return mongoose.model(name, dbSchema);
 }

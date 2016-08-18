@@ -37,12 +37,8 @@ export default class Manager {
 		return this.core.dbManager;
 	}
 
-	get Model() {
-		return this.core.Model;
-	}
-
 	get Connection() {
-		return this.core.Connection;
+		return this.core.connection;
 	}
 
 

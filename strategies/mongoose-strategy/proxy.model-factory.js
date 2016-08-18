@@ -3,8 +3,8 @@ import { isSchema, makeSchema, makeModel } from './proxy.adapter';
 
 export default function ModelFactory(name, data) {
 
-	if (isSchema(data)) {
-		data = makeSchema(name, data);
+	if (!isSchema(data)) {
+		data = makeSchema(data);
 	}
 
 	const dbModel = makeModel(name, data);
