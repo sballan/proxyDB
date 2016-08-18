@@ -12,6 +12,11 @@ export default function ModelFactory(name, data) {
 	class Model extends ProxyModel {
 		static modelName = name;
 		static dbModel = dbModel;
+
+		constructor(...args) {
+			super(...args);
+			this.dbModel = dbModel;
+		}
 	}
 
 	return Model;
