@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
  * only access it indirectly via this object
  */
 export default {
-	dbManager: mongoose,
+	mongoose,
 
 	makeSchema: (name, props) => {
 		return new mongoose.Schema(name, props)
@@ -22,6 +22,9 @@ export default {
 		} else dbSchema = this.makeSchema(name, schema)
 
 		return mongoose.model(name, dbSchema);
+	},
+	getModel: (name) => {
+		return mongoose.model(name);
 	},
 	makeConnection: () => {
 		return mongoose.createConnection()
