@@ -59,5 +59,8 @@ export default class ProxyDb {
 	}
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> alpha
 module.exports = ProxyDb;

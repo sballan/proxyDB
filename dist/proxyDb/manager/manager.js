@@ -12,11 +12,15 @@ var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _config = require('./config.factory');
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _config2 = _interopRequireDefault(_config);
+var _createClass2 = require('babel-runtime/helpers/createClass');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _core = require('./core.factory');
+
+var _core2 = _interopRequireDefault(_core);
 
 var Manager = function () {
 	function Manager(strategyName) {
@@ -26,11 +30,10 @@ var Manager = function () {
 		this.ProxyDb = config.ProxyDb;
 		this._models = {};
 		this._connections = {};
-		this._schemas = {};
 
-		this.strategy = this.ProxyDb.strategies[strategyName];
+		var strategy = this.ProxyDb.strategies[strategyName];
 		// _.defaults(config, configFactory(this.strategy));
-		this.config = (0, _config2.default)(this.strategy);
+		this.core = (0, _core2.default)(strategy);
 	}
 
 	(0, _createClass3.default)(Manager, [{
@@ -40,7 +43,7 @@ var Manager = function () {
 				return this._models[modelName];
 			}
 
-			var model = this.Schema.makeModel(modelName, data);
+			var model = this.modelFactory(modelName, data);
 
 			this._models[modelName] = model;
 			return model;
@@ -53,24 +56,19 @@ var Manager = function () {
 			return connection;
 		}
 	}, {
-		key: 'dbManager',
-		get: function get() {
-			return this.config.dbManager;
+		key: 'modelFactory',
+		value: function modelFactory(modelName, data) {
+			return this.core.modelFactory(modelName, data);
 		}
 	}, {
-		key: 'Model',
+		key: 'dbManager',
 		get: function get() {
-			return this.config.Model;
+			return this.core.dbManager;
 		}
 	}, {
 		key: 'Connection',
 		get: function get() {
-			return this.config.Connection;
-		}
-	}, {
-		key: 'Schema',
-		get: function get() {
-			return this.config.Schema;
+			return this.core.connection;
 		}
 	}]);
 	return Manager;

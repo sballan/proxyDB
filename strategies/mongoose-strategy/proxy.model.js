@@ -2,15 +2,11 @@ import Promise from 'bluebird';
 
 import { model as ModelTemplate } from '../../proxyDb/strategy-templates';
 
-
 export default class ProxyModel extends ModelTemplate {
 	save() {
 		return Promise.resolve({})
 			.then(() => {
-				return this.dbInstance.save()
-			})
-			.then(() => {
-				return this;
+				return this.dbInstance.save().then(() => this)
 			});
 	}
 
@@ -70,6 +66,7 @@ export default class ProxyModel extends ModelTemplate {
 	}
 
 }
+
 
 
 module.exports = ProxyModel;
