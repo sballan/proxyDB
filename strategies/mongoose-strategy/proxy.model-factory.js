@@ -1,20 +1,16 @@
 import ProxyModel from './proxy.model';
+import { isSchema, makeSchema, makeModel } from './proxy.adapter';
 
 export default function ModelFactory(name, data) {
-	// creates dbSchema,   pSchema.
-	const mongoose = require("./index").dbManager;
 
-	if (data instanceof mongoose.Schema === false) {
-		data = new mongoose.Schema(data);
+	if (isSchema(data)) {
+		data = makeSchema(name, data);
 	}
 
-	const dbSchema = data;
-	const modelName = name;
-
-	const dbModel = mongoose.model(modelName, dbSchema);
+	const dbModel = makeModel(name, data);
 
 	class Model extends ProxyModel {
-		static modelName = modelName;
+		static modelName = name;
 		static dbModel = dbModel;
 	}
 
