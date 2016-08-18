@@ -5,7 +5,7 @@ export default class Manager {
 		this.ProxyDb = config.ProxyDb;
 		this._models = {};
 		this._connections = {};
-		this._schemas = {}
+		this._schemas = {};
 
 		this.strategy = this.ProxyDb.strategies[strategyName];
 		// _.defaults(config, configFactory(this.strategy));

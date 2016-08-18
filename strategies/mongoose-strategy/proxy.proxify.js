@@ -13,6 +13,7 @@ export default {
 	},
 	proxifySchema: (name, dbSchema) => {
 
-	}
+	},
+
 
 }
